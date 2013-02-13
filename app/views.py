@@ -25,7 +25,6 @@ def send(request):
         return HttpResponseBadRequest('Only use POST method!')
 
     message = cgi.escape(request.POST['message'])
-    print 'new message: %s' % message
     if len(message) >= 512:
         return HttpResponseBadRequest('message too long (>=512)')
 
