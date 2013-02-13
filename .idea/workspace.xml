@@ -5,13 +5,13 @@
     <ignored path="webchat.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/settings.py" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360702206636" ignored="false" />
-    <file path="/views.py" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360786285776" ignored="false" />
-    <file path="/index.html" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360784552170" ignored="false" />
+    <file path="/views.py" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360787180759" ignored="false" />
+    <file path="/index.html" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360788291027" ignored="false" />
     <file path="/urls.py" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360700531751" ignored="false" />
     <file path="/models.py" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360699664591" ignored="false" />
     <file path="/01-createdb.sql" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360780484606" ignored="false" />
     <file path="/webchat.conf" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360780974469" ignored="false" />
-    <file path="/webchat.js" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360785306803" ignored="false" />
+    <file path="/webchat.js" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360788175961" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,28 +28,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webchat/settings.py">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="101" column="0" selection-start="3667" selection-end="3667" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="01-createdb.sql" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/prod/ddl/01-createdb.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="43" selection-start="174" selection-end="174" vertical-scroll-proportion="-3.4">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="webchat.conf" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/prod/apache/webchat.conf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="14" selection-start="341" selection-end="341" vertical-scroll-proportion="0.0">
+            <state line="19" column="48" selection-start="936" selection-end="936" vertical-scroll-proportion="0.51944447">
               <folding />
             </state>
           </provider>
@@ -58,63 +40,7 @@
       <file leaf-file-name="webchat.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/webchat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="9" selection-start="527" selection-end="527" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="604" selection-end="604" vertical-scroll-proportion="0.37564766">
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="58" selection-start="426" selection-end="426" vertical-scroll-proportion="-5.230769">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="webchat.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/webchat.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="11" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="32" selection-start="223" selection-end="223" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webchat/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="34" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webchat/wsgi.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="76" column="18" selection-start="2023" selection-end="2023" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -135,10 +61,10 @@
         <option value="$PROJECT_DIR$/webchat/urls.py" />
         <option value="$PROJECT_DIR$/prod/01-createdb.sql" />
         <option value="$PROJECT_DIR$/prod/apache/webchat.conf" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/webchat/settings.py" />
-        <option value="$PROJECT_DIR$/static/webchat.js" />
         <option value="$PROJECT_DIR$/app/views.py" />
+        <option value="$PROJECT_DIR$/static/webchat.js" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
       </list>
     </option>
   </component>
@@ -606,23 +532,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="12" selection-start="1846" selection-end="1846" vertical-scroll-proportion="0.8601036">
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/apache/webchat.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="14" selection-start="341" selection-end="341" vertical-scroll-proportion="0.57253885">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod/ddl/01-createdb.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="43" selection-start="174" selection-end="174" vertical-scroll-proportion="0.23545706">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webchat/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="101" column="0" selection-start="3667" selection-end="3667" vertical-scroll-proportion="0.738342">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static/webchat.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="11" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
+        <state line="8" column="11" selection-start="127" selection-end="127" vertical-scroll-proportion="0.3523316">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="32" selection-start="223" selection-end="223" vertical-scroll-proportion="0.0">
+        <state line="8" column="32" selection-start="223" selection-end="223" vertical-scroll-proportion="0.3523316">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webchat/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="34" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0">
+        <state line="7" column="34" selection-start="225" selection-end="225" vertical-scroll-proportion="0.30829015">
           <folding />
         </state>
       </provider>
@@ -634,47 +590,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/prod/ddl/01-createdb.sql">
+    <entry file="file://$PROJECT_DIR$/static/webchat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="43" selection-start="174" selection-end="174" vertical-scroll-proportion="-3.4">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/prod/apache/webchat.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="14" selection-start="341" selection-end="341" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webchat/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="0" selection-start="3667" selection-end="3667" vertical-scroll-proportion="0.0">
+        <state line="76" column="18" selection-start="2023" selection-end="2023" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="58" selection-start="426" selection-end="426" vertical-scroll-proportion="-5.230769">
+        <state line="19" column="48" selection-start="936" selection-end="936" vertical-scroll-proportion="0.51944447">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/webchat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="9" selection-start="527" selection-end="527" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="604" selection-end="604" vertical-scroll-proportion="0.37564766">
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

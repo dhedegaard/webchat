@@ -6,7 +6,7 @@ $(function() {
         }
     });
 
-    var btn_send = $('input[type=button][name=btn_send]');
+    var btn_send = $('button[id=btn_send]');
     var input = $('input[type=text]');
     var textarea = $('div#chat');
     var lastid = -1;
@@ -74,4 +74,5 @@ $(function() {
     }
 
     setTimeout(get_new_messages, 100);
+    input.focus();
 });
