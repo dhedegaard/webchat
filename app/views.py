@@ -5,6 +5,7 @@ import json
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response
 from django.http import HttpResponseBadRequest, HttpResponse
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 from models import Message
 
@@ -12,6 +13,7 @@ from models import Message
 SLEEP_SECONDS = 20
 
 
+@ensure_csrf_cookie
 def index(request):
     env = {}
     env.update(csrf(request))

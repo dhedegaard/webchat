@@ -5,13 +5,13 @@
     <ignored path="webchat.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/settings.py" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360702206636" ignored="false" />
-    <file path="/views.py" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360784696098" ignored="false" />
+    <file path="/views.py" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360786285776" ignored="false" />
     <file path="/index.html" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360784552170" ignored="false" />
     <file path="/urls.py" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360700531751" ignored="false" />
     <file path="/models.py" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360699664591" ignored="false" />
     <file path="/01-createdb.sql" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360780484606" ignored="false" />
     <file path="/webchat.conf" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360780974469" ignored="false" />
-    <file path="/webchat.js" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360784859462" ignored="false" />
+    <file path="/webchat.js" changelist="c50bf6a3-3015-4f6d-98bb-f212daa22941" time="1360785306803" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,19 +55,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webchat.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="webchat.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/webchat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="20" selection-start="548" selection-end="548" vertical-scroll-proportion="0.30829015">
+            <state line="18" column="9" selection-start="527" selection-end="527" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="357" selection-end="357" vertical-scroll-proportion="0.0">
+            <state line="16" column="19" selection-start="343" selection-end="343" vertical-scroll-proportion="0.6165803">
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -137,14 +137,14 @@
         <option value="$PROJECT_DIR$/prod/apache/webchat.conf" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/webchat/settings.py" />
-        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/static/webchat.js" />
+        <option value="$PROJECT_DIR$/app/views.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="370" />
-    <option name="y" value="133" />
+    <option name="x" value="295" />
+    <option name="y" value="119" />
     <option name="width" value="1558" />
     <option name="height" value="861" />
   </component>
@@ -484,7 +484,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="370" y="133" width="1558" height="861" extended-state="0" />
+    <frame x="295" y="119" width="1558" height="861" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -662,19 +662,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
+    <entry file="file://$PROJECT_DIR$/static/webchat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="357" selection-end="357" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        <state line="18" column="9" selection-start="527" selection-end="527" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/webchat.js">
+    <entry file="file://$PROJECT_DIR$/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="20" selection-start="548" selection-end="548" vertical-scroll-proportion="0.30829015">
-          <folding />
+        <state line="16" column="19" selection-start="343" selection-end="343" vertical-scroll-proportion="0.6165803">
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
