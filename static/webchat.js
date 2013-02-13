@@ -1,4 +1,11 @@
 $(function() {
+    var csrftoken = $.cookie('csrftoken');
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            xhr.setRequestHeader('X-CSRFToken', csrftoken);
+        }
+    });
+
     var btn_send = $('input[type=button][name=btn_send]');
     var input = $('input[type=text]');
     var textarea = $('div#chat');
@@ -10,6 +17,7 @@ $(function() {
             btn_send.click();
             return false;
         }
+        return true;
     });
 
     btn_send.click(function(event) {

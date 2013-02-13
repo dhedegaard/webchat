@@ -1,6 +1,8 @@
+import cgi
 import time
 import json
 
+from django.core.context_processors import csrf
 from django.shortcuts import render_to_response
 from django.http import HttpResponseBadRequest, HttpResponse
 
@@ -11,14 +13,16 @@ SLEEP_SECONDS = 20
 
 
 def index(request):
-    return render_to_response('index.html')
+    env = {}
+    env.update(csrf(request))
+    return render_to_response('index.html', env)
 
 
 def send(request):
     if request.method != 'POST':
         return HttpResponseBadRequest('Only use POST method!')
 
-    message = request.POST['message']
+    message = cgi.escape(request.POST['message'])
     print 'new message: %s' % message
     if len(message) >= 512:
         return HttpResponseBadRequest('message too long (>=512)')
