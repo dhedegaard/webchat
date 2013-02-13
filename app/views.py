@@ -1,8 +1,11 @@
 import time
-from models import Message
+import json
+
 from django.shortcuts import render_to_response
 from django.http import HttpResponseBadRequest, HttpResponse
-import json
+
+from models import Message
+
 
 SLEEP_SECONDS = 20
 
@@ -34,7 +37,7 @@ def _format_messages(messages):
             'id': message.pk,
             'time': message.timestamp.strftime('%y-%m-%d %H:%M:%S'),
             'message': message.message,
-            })
+        })
     return HttpResponse(json.dumps(result), mimetype='application/json; charset=UTF-8')
 
 
