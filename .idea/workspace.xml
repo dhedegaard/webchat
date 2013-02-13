@@ -48,7 +48,7 @@
       <file leaf-file-name="webchat.conf" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/prod/apache/webchat.conf">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="12" selection-start="352" selection-end="352" vertical-scroll-proportion="0.6165803">
+            <state line="1" column="37" selection-start="93" selection-end="93" vertical-scroll-proportion="0.04404145">
               <folding />
             </state>
           </provider>
@@ -672,7 +672,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/prod/apache/webchat.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="12" selection-start="352" selection-end="352" vertical-scroll-proportion="0.6165803">
+        <state line="1" column="37" selection-start="93" selection-end="93" vertical-scroll-proportion="0.04404145">
           <folding />
         </state>
       </provider>
