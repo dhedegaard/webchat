@@ -1,8 +1,9 @@
 $(function() {
+    "use strict";
     // make sure AJAX-requests send the CSRF cookie, or the requests will be rejected.
     var csrftoken = $.cookie('csrftoken');
     $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
+        beforeSend: function(xhr) {
             xhr.setRequestHeader('X-CSRFToken', csrftoken);
         }
     });
@@ -45,11 +46,13 @@ $(function() {
             'username': _username
         }, function(data) {
             if (data !== 'OK') {
-                alert('Data not ok:\n\n' + data);
+                add_error(data);
             }
             input.val('');
             input.focus();
-        })
+        }).fail(function(data) {
+            add_error(data);
+        });
         return false;
     });
 
@@ -57,16 +60,16 @@ $(function() {
         if ($.cookie('username') !== _username) {
             $.cookie('username', _username, {expires: 365});
         }
-    }
+    };
 
     var add_message = function(message) {
-        var line = '<span class="time">[' + message['time'] + ']</span> ' +
-            '<span class="username">' + message['username'] + '</span>: ' +
-            '<span class="message">' + message['message'] + '</span><br />';
+        var line = '<span class="time">[' + message.time + ']</span> ' +
+            '<span class="username">' + message.username + '</span>: ' +
+            '<span class="message">' + message.message + '</span><br />';
         textarea.append(line);
         textarea.scrollTop(textarea[0].scrollHeight);
-        if (message['id'] > lastid) {
-            lastid = message['id'];
+        if (message.id > lastid) {
+            lastid = message.id;
         }
     };
 
@@ -80,9 +83,11 @@ $(function() {
         var get_all_messages = function() {
             $.post('/get_all', {}, function(msgs) {
                 for (var i in msgs) {
-                    add_message(msgs[i]);
+                    if (msgs[i] !== undefined) {
+                        add_message(msgs[i]);
+                    }
                 }
-            })
+            });
         };
         get_all_messages();
     })();
@@ -98,7 +103,9 @@ $(function() {
 
             try {
                 for (var i in msgs) {
-                    add_message(msgs[i]);
+                    if (msgs[i] !== undefined) {
+                        add_message(msgs[i]);
+                    }
                 }
             } catch (e) {
                 add_error(e);
