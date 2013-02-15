@@ -9,6 +9,7 @@ $(function() {
     });
 
     var btn_send = $('button[id=btn_send]');
+    var btn_send_text = btn_send.text();
     var username = $('input#username');
     var input = $('input#input');
     var textarea = $('div#chat');
@@ -41,6 +42,8 @@ $(function() {
         // attempt to save username if any.
         save_username(_username);
 
+        btn_send.text('Sending');
+        btn_send.addClass('disabled');
         $.post('/send', {
             'message': message,
             'username': _username
@@ -52,6 +55,9 @@ $(function() {
             input.focus();
         }).fail(function(data) {
             add_error(data);
+        }).always(function() {
+            btn_send.text(btn_send_text);
+            btn_send.removeClass('disabled');
         });
         return false;
     });

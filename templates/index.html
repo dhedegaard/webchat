@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webchat</title>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -12,21 +13,51 @@
     <script type="text/javascript" src="/static/webchat.js"></script>
 </head>
 <body>
-<div class="container">
-    <h1>Webchat</h1>
-
-    <p>If a simple long-polling based chat solution could be defined as fun, this would be one of those.</p>
-    <p>Source available here: <a href="https://bitbucket.org/dennishedegaard/webchat">https://bitbucket.org/dennishedegaard/webchat</a></p>
-    <hr/>
-    <div contenteditable="true" id="chat"></div>
-    <br/>
-    <label for="username">Username:</label>
-    <label for="input">Message:</label><br />
-    <div class="input-append">
-        <input id="username" name="username" type="text" placeholder="anon" />
-        <input id="input" name="input" type="text" placeholder="Enter a message and hit Enter..." />
-        <button class="btn btn-primary" id="btn_send" type="button">Send <i class="icon-white icon-refresh"></i></button>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h1>Webchat</h1>
+                <p>If a simple long-polling based chat solution could be defined as fun, this would be one of those.</p>
+                <p>Source available here:
+                    <a href="https://bitbucket.org/dennishedegaard/webchat">https://bitbucket.org/dennishedegaard/webchat</a></p>
+                <hr/>
+                <div id="chat"></div>
+                <br />
+                <div class="row">
+                    <label class="span2" for="username">Username:</label>
+                    <label class="span10" for="input">Message:</label><br />
+                </div>
+                <div class="row">
+                    <div class="span12"></div>
+                        <form class="form form-inline">
+                            <div class="span2">
+                                <input class="fill"
+                                       id="username"
+                                       name="username"
+                                       type="text"
+                                       placeholder="anon" />
+                            </div>
+                            <div class="span10">
+                                <div class="row">
+                                    <div class="span9">
+                                        <input class="fill"
+                                               id="input"
+                                               name="input"
+                                               type="text"
+                                               placeholder="Enter a message and hit Enter..." />
+                                    </div>
+                                    <div class="span1">
+                                        <button class="fill btn btn-success"
+                                                id="btn_send"
+                                                type="button">Send</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 </html>
