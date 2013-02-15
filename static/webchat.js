@@ -79,19 +79,6 @@ $(function() {
         textarea.scrollTop(textarea[0].scrollHeight);
     };
 
-    (function() {
-        var get_all_messages = function() {
-            $.post('/get_all', {}, function(msgs) {
-                for (var i in msgs) {
-                    if (msgs[i] !== undefined) {
-                        add_message(msgs[i]);
-                    }
-                }
-            });
-        };
-        get_all_messages();
-    })();
-
     var get_new_messages = function() {
         $.post('/get_new', {
             'id': lastid

@@ -53,16 +53,6 @@ def _format_messages(messages):
     return HttpResponse(json.dumps(result), mimetype='application/json; charset=UTF-8')
 
 
-def get_all(request):
-    if request.method != 'POST':
-        return HttpResponseBadRequest('Only POST method!')
-
-    # get the first 100 messages.
-    messages = Message.objects.all().order_by('pk')[:100]
-
-    return _format_messages(messages)
-
-
 def get_new(request):
     if request.method != 'POST':
         return HttpResponseBadRequest('Only POST method!')
