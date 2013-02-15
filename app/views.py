@@ -65,7 +65,7 @@ def get_new(request):
         messages = Message.objects.filter(pk__gt=_id).order_by('pk')
         if len(messages) > 0:
             if len(messages) > 100:
-                messages = messages[:100]
+                messages = messages[len(messages) - 100:]
             return _format_messages(messages)
         time.sleep(1)
 
