@@ -5,13 +5,24 @@ div#chat {
     border: 1px solid #CCCCCC;
 }
 
-input#input {
-    width: 700px;
+input#username {
+    width: 80px;
 }
-.time {
+
+input#input {
+    width: 620px;
+}
+
+label {
     font-weight: bold;
+    display: inline;
+    margin-right: 20px;
 }
 
 .message {
+    font-weight: bold;
+}
+
+.username {
     color: #0000DD;
 }

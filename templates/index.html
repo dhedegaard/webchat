@@ -15,12 +15,16 @@
 <div class="container">
     <h1>Webchat</h1>
 
-    <p>If a simple long-polling based chat sollution could be defined as fun, this would be one of those.</p>
+    <p>If a simple long-polling based chat solution could be defined as fun, this would be one of those.</p>
+    <p>Source available here: <a href="https://bitbucket.org/dennishedegaard/webchat">https://bitbucket.org/dennishedegaard/webchat</a></p>
     <hr/>
     <div contenteditable="true" id="chat"></div>
     <br/>
+    <label for="username">Username:</label>
+    <label for="input">Message:</label><br />
     <div class="input-append">
-        <input id="input" type="text" placeholder="Enter a message and hit Enter..."/>
+        <input id="username" name="username" type="text" placeholder="anon" />
+        <input id="input" name="input" type="text" placeholder="Enter a message and hit Enter..." />
         <button class="btn btn-primary" id="btn_send" type="button">Send <i class="icon-white icon-refresh"></i></button>
     </div>
 </div>

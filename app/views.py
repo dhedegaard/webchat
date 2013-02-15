@@ -25,11 +25,17 @@ def send(request):
         return HttpResponseBadRequest('Only use POST method!')
 
     message = cgi.escape(request.POST['message'])
+    username = cgi.escape(request.POST['username'])
+
     if len(message) >= 512:
         return HttpResponseBadRequest('message too long (>=512)')
 
+    if len(username) >= 32:
+        return HttpResponseBadRequest('username too long (>=32)')
+
     msg = Message()
     msg.message = message
+    msg.username = username
     msg.save()
 
     return HttpResponse('OK')
@@ -40,8 +46,9 @@ def _format_messages(messages):
     for message in messages:
         result.append({
             'id': message.pk,
-            'time': message.timestamp.strftime('%y-%m-%d %H:%M:%S'),
+            'time': message.timestamp.strftime('%y-%m-%d %H:%M'),
             'message': message.message,
+            'username': message.username,
         })
     return HttpResponse(json.dumps(result), mimetype='application/json; charset=UTF-8')
 
