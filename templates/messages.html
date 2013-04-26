@@ -1,0 +1,5 @@
+{% for message in messages %}
+<span class="time">[{{ message.timestamp.strftime('%y-%m-%d %H:%M') }}]</span>
+<span class="username">{{ message.username }}</span>:
+<span class="message">{{ message.message }}</span><br />
+{%  endfor %}

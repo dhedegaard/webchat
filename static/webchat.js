@@ -9,11 +9,10 @@ $(function() {
     });
 
     var btn_send = $('button[id=btn_send]');
-    var btn_send_text = btn_send.text();
     var username = $('input#username');
     var input = $('input#input');
     var textarea = $('div#chat');
-    var lastid = -1;
+
 
     // handle enter in the input field to click the "Send" button.
     input.keypress(function(event) {
@@ -39,10 +38,9 @@ $(function() {
             _username = username.attr('placeholder');
         }
 
-        // attempt to save username if any.
+        // attempt to save username in cookie, if any.
         save_username(_username);
 
-        btn_send.text('Sending');
         btn_send.addClass('disabled');
         $.post('/send', {
             'message': message,
@@ -54,9 +52,8 @@ $(function() {
             input.val('');
             input.focus();
         }).fail(function(data) {
-            add_error(data);
+            add_error(data.status + ": " + data.statusText);
         }).always(function() {
-            btn_send.text(btn_send_text);
             btn_send.removeClass('disabled');
         });
         return false;
@@ -68,15 +65,9 @@ $(function() {
         }
     };
 
-    var add_message = function(message) {
-        var line = '<span class="time">[' + message.time + ']</span> ' +
-            '<span class="username">' + message.username + '</span>: ' +
-            '<span class="message">' + message.message + '</span><br />';
-        textarea.append(line);
+    var add_messages = function(messages) {
+        textarea.append(messages);
         textarea.scrollTop(textarea[0].scrollHeight);
-        if (message.id > lastid) {
-            lastid = message.id;
-        }
     };
 
     var add_error = function(data) {
@@ -85,29 +76,62 @@ $(function() {
         textarea.scrollTop(textarea[0].scrollHeight);
     };
 
+    /* The last highest ID of a message, this is to avoid returning the same messages
+     * more than once.
+     */
+    var lastid = -1;
+
+    /* Contains the current number of failed requests (for get_new_messages) in a row. */
+    var failed_requests_in_a_row = 0;
+
+    /* Gets new messages from the server by initiating an AJAX POST-request.
+     * If any new message(s) was found, some JSON in returned.
+     * If no new message(s) was found, "OK" is returned.
+     *
+     * After 3 failed requests in a row, the loop is stopped.
+     */
     var get_new_messages = function() {
+        if (failed_requests_in_a_row >= 3) {
+            add_error("Reached the max number of failed requests in a row.<br />" +
+                      "Click <a href=\"javascript:$.retry_get_new_messages();\">Here</a> to try again!");
+            return;
+        }
         $.post('/get_new', {
-            'id': lastid
-        }, function(msgs) {
+            id: lastid
+        }, function(result) {
             // this is caused by long polling timeout.
-            if (msgs === 'OK') {
+            if (result === 'OK') {
+                failed_requests_in_a_row = 0;
                 return;
             }
 
+            /* Try to parse and interpret the resulting json. */
             try {
-                for (var i in msgs) {
-                    if (msgs[i] !== undefined) {
-                        add_message(msgs[i]);
-                    }
-                }
+                lastid = result.lastid;
+                add_messages(result.messages);
             } catch (e) {
                 add_error(e);
             }
+
+            failed_requests_in_a_row = 0;
         }).fail(function(data) {
-               add_error(data);
+            failed_requests_in_a_row += 1;
+
+            /* Format the error string into something readable, instead of [Object object]. */
+            var failed_string = data.status + ": " + data.statusText;
+            add_error(failed_string);
         }).always(function() {
-            get_new_messages();
+            /* Get new messages even when the previous request failed. */
+            setTimeout(get_new_messages, 100);
         });
+    };
+
+    /* Called by the user, if he/she wants to try and get new messages again
+     * after the limit (failed_requests_in_a_row) has been exceeded.
+     */
+    $.retry_get_new_messages = function() {
+        failed_requests_in_a_row = 0;
+        setTimeout(get_new_messages, 100);
     };
 
     setTimeout(get_new_messages, 100);
