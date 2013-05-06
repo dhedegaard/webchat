@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
 # Bootstrap shell script for vagrant.
 
-# Bash stuff.
-wget http://p.dhedegaard.dk/bash -O- 2>/dev/null | tee -a ~vagrant/.bashrc | tee -a ~root/.bashrc >/dev/null
+# Check to see if we should bootstrap.
+if [ -e /root/.bootstrapped ]; then
+    echo "Already bootstrapped..."
+    service apache2 start  # Weird bug, fix apache not starting on boot.
+    exit 0
+fi
+echo "Bootstrapping..."
 
-# Symlink from shared folder
+# Basic stuff.
+wget http://p.dhedegaard.dk/bash -O- 2>/dev/null |\
+ tee -a ~vagrant/.bashrc |\
+ tee -a ~root/.bashrc >/dev/null
+echo "\ncd /home/webchat" >> ~vagrant/.bashrc
 ln -s /vagrant /home/webchat
 
 # install packages.
@@ -36,6 +45,9 @@ service apache2 reload
 
 python /home/webchat/manage.py syncdb --noinput
 python /home/webchat/manage.py collectstatic --noinput
+
+# Setup is complete, touch a file to avoid running the bootstrap again on halt/up.
+touch /root/.bootstrapped
 
 # All done !
 exit 0
