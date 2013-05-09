@@ -13,7 +13,7 @@ echo "Bootstrapping..."
 wget http://p.dhedegaard.dk/bash -O- 2>/dev/null |\
  tee -a ~vagrant/.bashrc |\
  tee -a ~root/.bashrc >/dev/null
-echo "\ncd /home/webchat" >> ~vagrant/.bashrc
+echo "cd /home/webchat" >> ~vagrant/.bashrc
 ln -s /vagrant /home/webchat
 
 # install packages.
