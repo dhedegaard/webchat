@@ -18,7 +18,7 @@ ln -s /vagrant /home/webchat
 
 # install packages.
 aptitude update
-aptitude install -y python-django postgresql python-psycopg2 apache2 libapache2-mod-wsgi python-jinja2
+aptitude install -y python-django postgresql python-psycopg2 apache2 libapache2-mod-wsgi python-jinja2 python-tz
 
 ######################
 #   POSTGRES SETUP   #
