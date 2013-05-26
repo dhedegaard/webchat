@@ -12,6 +12,9 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')).replace('\
 
 MANAGERS = ADMINS
 
+ALLOWED_HOSTS = ['wc.dhedegaard.dk', 'webchat.dhedegaard.dk',
+                 'wc.neo2k.dk', 'webchat.neo2k.dk']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
