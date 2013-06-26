@@ -40,15 +40,35 @@ def send(request):
     if request.method != 'POST':
         return HttpResponseBadRequest('Only use POST method!')
 
+    # Validate that arguments exist in the request.
+    for arg in ('message', 'username', ):
+        if not arg in request.POST:
+            return HttpResponseBadRequest('missing %s argument in request.' % arg)
+
     # Make sure to escape embedded HTML.
     message = cgi.escape(request.POST['message'])
     username = cgi.escape(request.POST['username'])
 
-    if len(message) >= 512:
-        return HttpResponseBadRequest('message too long (>=512)')
+    MAX_MESSAGE_LENGTH = Message._meta.get_field('message').max_length
+    MAX_USERNAME_LENGTH = Message._meta.get_field('username').max_length
+    message_len = len(message)
+    username_len = len(username)
 
-    if len(username) >= 32:
-        return HttpResponseBadRequest('username too long (>=32)')
+    # Validate length higher than 0.
+    if message_len == 0:
+        return HttpResponseBadRequest('message argument is empty.')
+    if username_len == 0:
+        return HttpResponseBadRequest('username argument is empty.')
+
+    # Validate length within model bounds.
+    if message_len > MAX_MESSAGE_LENGTH:
+        return HttpResponseBadRequest('message too long (%s is higher than %s).' % (
+            message_len, MAX_MESSAGE_LENGTH,
+        ))
+    if username_len > MAX_USERNAME_LENGTH:
+        return HttpResponseBadRequest('username too long (%s is higher then %s).' % (
+            username_len, MAX_USERNAME_LENGTH,
+        ))
 
     # Make the new message, and save it in the backend.
     msg = Message()

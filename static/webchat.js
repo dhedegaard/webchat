@@ -52,7 +52,14 @@ $(function() {
             input.val('');
             input.focus();
         }).fail(function(data) {
-            add_error(data.status + ": " + data.statusText);
+            var status = data.status;
+            var statusText = data.statusText;
+
+            // If we've hit a 400 (Bad Request), show the responseText.
+            if (status === 400) {
+                statusText += ": " + data.responseText;
+            }
+            add_error(status + " " + statusText);
         }).always(function() {
             btn_send.removeClass('disabled');
         });
