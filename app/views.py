@@ -8,7 +8,6 @@ from django.http import HttpResponseBadRequest, HttpResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 from models import Message
-from utils import render_jinja2_template
 
 
 SLEEP_SECONDS = 20
@@ -35,7 +34,8 @@ def send(request):
     If the message is saved successfully, 200 OK with a body containing 'OK'
     is returned.
 
-    If it fails, a 400 Bad Request is returned, with a body describing the fault.
+    If it fails, a 400 Bad Request is returned, with a body describing the
+    fault.
     """
     if request.method != 'POST':
         return HttpResponseBadRequest('Only use POST method!')
@@ -43,7 +43,8 @@ def send(request):
     # Validate that arguments exist in the request.
     for arg in ('message', 'username', ):
         if not arg in request.POST:
-            return HttpResponseBadRequest('missing %s argument in request.' % arg)
+            return HttpResponseBadRequest(
+                'missing %s argument in request.' % arg)
 
     # Make sure to escape embedded HTML.
     message = cgi.escape(request.POST['message'])
@@ -62,13 +63,15 @@ def send(request):
 
     # Validate length within model bounds.
     if message_len > MAX_MESSAGE_LENGTH:
-        return HttpResponseBadRequest('message too long (%s is higher than %s).' % (
-            message_len, MAX_MESSAGE_LENGTH,
-        ))
+        return HttpResponseBadRequest(
+            'message too long (%s is higher than %s).' % (
+                message_len, MAX_MESSAGE_LENGTH,
+            ))
     if username_len > MAX_USERNAME_LENGTH:
-        return HttpResponseBadRequest('username too long (%s is higher then %s).' % (
-            username_len, MAX_USERNAME_LENGTH,
-        ))
+        return HttpResponseBadRequest(
+            'username too long (%s is higher then %s).' % (
+                username_len, MAX_USERNAME_LENGTH,
+            ))
 
     # Make the new message, and save it in the backend.
     msg = Message()
@@ -88,10 +91,11 @@ def get_new(request):
     messages in this interval, "OK" is returned and the client may initiate a
     new request.
 
-    The result of this method, when new messages are available is json similar to below:
+    The result of this method, when new messages are available is json similar
+    to below:
 
     {
-        messages: '<span>...</span>',
+        messages: [{...}, {...}, ...],
         lastid: 100
     }
 
@@ -116,14 +120,23 @@ def get_new(request):
 
         # Never return more than 100 messages at once.
         if len(messages) > 100:
-            messages = messages[len(messages) - 100:]
+            messages = messages[-100:]
 
-        # Render, assemble json and return the result.
-        html_messages = render_jinja2_template('messages.html', messages=messages)
+        message_dict = []
+        # Convert messages to a dict.
+        for message in messages:
+            message_dict.append({
+                'id': message.pk,
+                'username': message.username,
+                'message': message.message,
+                'timestamp': message.timestamp.isoformat(),
+            })
+
         result = {
-            'messages': html_messages,
+            'messages': message_dict,
             'lastid': max([message.pk for message in messages]),
         }
-        return HttpResponse(json.dumps(result), mimetype='application/json; charset=UTF-8')
+        return HttpResponse(json.dumps(result),
+                            mimetype='application/json; charset=UTF-8')
 
     return HttpResponse('OK')

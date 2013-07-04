@@ -72,15 +72,43 @@ $(function() {
         }
     };
 
-    var add_messages = function(messages) {
-        textarea.append(messages);
+    var date_to_string = function(date) {
+        return date.format('YYYY-MM-DD HH:mm:SS');
+    };
+
+    // Renders JSON to HTML, that can be appended to the existing messages.
+    var render_messages = function(messages) {
+        // Convert date objects to string repressentations.
+        _.each(messages, function(message) {
+            message.formatted_timestamp = date_to_string(message.timestamp);
+        });
+
+        // Render the template using underscore.
+        var template = _.template(
+            '<% _.each(messages, function(message) { %>' +
+                '<span class="time">[<%= message.formatted_timestamp %>]</span> ' +
+                '<span class="username"><%= message.username %></span> ' +
+                '<span class="message"><%= message.message %></span><br />' +
+                '<% }); %>');
+        var rendered = template({
+            messages: messages
+        });
+        return rendered;
+    };
+
+    var append_textarea = function(html) {
+        textarea.append(html);
         textarea.scrollTop(textarea[0].scrollHeight);
+    };
+
+    var add_messages = function(messages) {
+        var rendered_messages = render_messages(messages);
+        append_textarea(rendered_messages);
     };
 
     var add_error = function(data) {
         var line = '<span class="error">Error:<br /><pre>' + data + '</pre></span>';
-        textarea.append(line);
-        textarea.scrollTop(textarea[0].scrollHeight);
+        append_textarea(line);
     };
 
     /* The last highest ID of a message, this is to avoid returning the same messages
@@ -106,11 +134,18 @@ $(function() {
         $.post('/get_new', {
             id: lastid
         }, function(result) {
+            failed_requests_in_a_row = 0;
             // this is caused by long polling timeout.
             if (result === 'OK') {
-                failed_requests_in_a_row = 0;
                 return;
             }
+
+            var messages = result.messages;
+
+            /* Convert ISO timestamps to javascript Date objects. */
+            _.each(messages, function(message) {
+                message.timestamp = moment(message.timestamp);
+            });
 
             /* Try to parse and interpret the resulting json. */
             try {
@@ -119,8 +154,6 @@ $(function() {
             } catch (e) {
                 add_error(e);
             }
-
-            failed_requests_in_a_row = 0;
         }).fail(function(data) {
             failed_requests_in_a_row += 1;
 
