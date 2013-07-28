@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webchat</title>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/static/webchat.css"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'webchat.css' %}"/>
 </head>
 <body>
     <div class="container">
@@ -64,9 +65,9 @@
         </div>
     </div>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% static 'jquery.cookie.js' %}"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
-    <script type="text/javascript" src="/static/webchat.js"></script>
+    <script type="text/javascript" src="{% static 'webchat.js' %}"></script>
 </body>
 </html>

@@ -70,7 +70,6 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(ROOT, 'static').replace('\\', '/'),
 )
 
 # List of finder classes that know how to find static files in
@@ -106,7 +105,7 @@ ROOT_URLCONF = 'webchat.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'webchat.wsgi.application'
 
-TEMPLATE_DIRS = (os.path.join(ROOT, 'templates').replace('\\', '/'),)
+TEMPLATE_DIRS = (os.path.join(ROOT, '../app/templates').replace('\\', '/'),)
 
 INSTALLED_APPS = (
     'django.contrib.auth',

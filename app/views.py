@@ -3,9 +3,8 @@ import time
 import json
 
 from django.core.context_processors import csrf
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.http import HttpResponseBadRequest, HttpResponse
-from django.views.decorators.csrf import ensure_csrf_cookie
 
 from models import Message
 
@@ -13,14 +12,13 @@ from models import Message
 SLEEP_SECONDS = 20
 
 
-@ensure_csrf_cookie
 def index(request):
     """
     This just renders the main template, it might as well serve a static page.
     """
     env = {}
     env.update(csrf(request))
-    return render_to_response('index.html', env)
+    return render(request, 'index.html', env)
 
 
 def send(request):
@@ -120,7 +118,7 @@ def get_new(request):
 
         # Never return more than 100 messages at once.
         if len(messages) > 100:
-            messages = messages[-100:]
+            messages = messages[messages.count()-100:]
 
         message_dict = []
         # Convert messages to a dict.
