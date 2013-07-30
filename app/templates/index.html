@@ -1,73 +1,61 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webchat</title>
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="{% static 'webchat.css' %}"/>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Webchat</title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" />
+  <link type="text/css" rel="stylesheet" href="{% static 'webchat.css' %}"/>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="span12">
-                <h1>Webchat</h1>
-                <p>If a simple long-polling based chat solution could be defined as fun, this would be one of those.</p>
-                <p>Source available here:
-                    <a href="https://bitbucket.org/dennishedegaard/webchat">https://bitbucket.org/dennishedegaard/webchat</a></p>
-                <noscript>
-                    <div class="alert">
-                        Please enable javascript for the site to function.
-                    </div>
-                </noscript>
-                <hr/>
-                <div id="chat"></div>
-                <br />
-                <div class="row">
-                    <label class="span2" for="username">Username:</label>
-                    <label class="span10" for="input">Message:</label><br />
-                </div>
-                <div class="row">
-                    <div class="span12"></div>
-                        <form class="form form-inline">
-                            <div class="span2">
-                                <input class="fill"
-                                       id="username"
-                                       name="username"
-                                       type="text"
-                                       placeholder="anon" />
-                            </div>
-                            <div class="span10">
-                                <div class="row">
-                                    <div class="span9">
-                                        <input class="fill"
-                                               id="input"
-                                               name="input"
-                                               type="text"
-                                               placeholder="Enter a message and hit Enter..." />
-                                    </div>
-                                    <div class="span1">
-                                        <button class="fill btn btn-primary btn-small"
-                                                id="btn_send"
-                                                type="button">
-                                            <i class="icon-white icon-envelope"></i>
-                                            <span>Send</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+  {% csrf_token %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>Webchat</h2>
+        <div class="visible-lg">
+          <p>If a simple long-polling based chat solution could be defined as fun, this would be one of those.</p>
+          <p>Source available here:
+            <a href="https://bitbucket.org/dennishedegaard/webchat">https://bitbucket.org/dennishedegaard/webchat</a></p>
+          <hr />
         </div>
+      </div>
     </div>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static 'jquery.cookie.js' %}"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
-    <script type="text/javascript" src="{% static 'webchat.js' %}"></script>
+    <div class="row">
+      <div class="col-12">
+        <div id="chat" class="form-control"></div>
+      </div>
+    </div>
+    <div class="row">
+      <label class="bold col-4 col-lg-2" for="username">Username:</label>
+      <label class="bold col-8 col-lg-10" for="input">Message:</label>
+    </div>
+    <div class="row">
+      <div class="col-4 col-lg-2">
+        <input class="form-control" id="username" name="username" type="text" placeholder="anon" />
+      </div>
+      <div class="col-8 col-lg-10">
+        <div class="input-group">
+          <input class="form-control" id="input" name="input" type="text"
+                 placeholder="Enter a message and hit Enter..." />
+          <span class="input-group-btn">
+            <button class="btn btn-default" id="btn_send" type="button">
+              <i class="icon-envelope hidden-lg"></i>
+              <span class="visible-lg"><i class="icon-envelope"></i> Send</span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.3.1/jquery.cookie.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js"></script>
+  <script type="text/javascript" src="{% static 'webchat.js' %}"></script>
 </body>
 </html>

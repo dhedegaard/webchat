@@ -1,12 +1,16 @@
-div#chat {
+#chat {
     overflow: auto;
     height: 400px;
     border: 1px solid #CCCCCC;
+    margin-bottom: 15px;
 }
 
-label {
+.bold {
     font-weight: bold;
-    display: inline;
+}
+
+.time {
+    color: #888888;
 }
 
 .message {
@@ -15,8 +19,4 @@ label {
 
 .username {
     color: #0000DD;
-}
-
-.fill {
-    width: 100%;
 }

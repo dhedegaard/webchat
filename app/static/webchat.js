@@ -1,7 +1,9 @@
+/*global $, _ */
 $(function() {
     "use strict";
     // make sure AJAX-requests send the CSRF cookie, or the requests will be rejected.
-    var csrftoken = $.cookie('csrftoken');
+    var csrftoken = $('input[type=hidden][name=csrfmiddlewaretoken]').val();
+
     $.ajaxSetup({
         beforeSend: function(xhr) {
             xhr.setRequestHeader('X-CSRFToken', csrftoken);
@@ -73,7 +75,7 @@ $(function() {
     };
 
     var date_to_string = function(date) {
-        return date.format('YYYY-MM-DD HH:mm:SS');
+        return date.format('YYYY-MM-DD HH:mm');
     };
 
     // Renders JSON to HTML, that can be appended to the existing messages.

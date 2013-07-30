@@ -14,11 +14,9 @@ SLEEP_SECONDS = 20
 
 def index(request):
     """
-    This just renders the main template, it might as well serve a static page.
+    Renders the main template.
     """
-    env = {}
-    env.update(csrf(request))
-    return render(request, 'index.html', env)
+    return render(request, 'index.html')
 
 
 def send(request):
@@ -106,35 +104,50 @@ def get_new(request):
     if 'id' not in request.POST:
         return HttpResponseBadRequest('No \'id\' parameter')
 
-    _id = request.POST['id']
+    id = request.POST['id']
     for _ in xrange(SLEEP_SECONDS):
         # Query the backend for messages since "id".
-        messages = Message.objects.filter(pk__gt=_id).order_by('pk')
+        messages = Message.get_new_messages(id)
+        message_count = messages.count()
 
         # If no messages was found, sleep and try again.
-        if len(messages) == 0:
+        if message_count == 0:
             time.sleep(1)
             continue
 
         # Never return more than 100 messages at once.
-        if len(messages) > 100:
-            messages = messages[messages.count()-100:]
+        if message_count > 100:
+            messages = messages[message_count-100:]
 
-        message_dict = []
-        # Convert messages to a dict.
-        for message in messages:
-            message_dict.append({
-                'id': message.pk,
-                'username': message.username,
-                'message': message.message,
-                'timestamp': message.timestamp.isoformat(),
-            })
+        # Convert the QuerySet to a dictlist.
+        messages_dict = _convert_to_dictlist(messages)
 
         result = {
-            'messages': message_dict,
+            'messages': messages_dict,
             'lastid': max([message.pk for message in messages]),
         }
         return HttpResponse(json.dumps(result),
                             mimetype='application/json; charset=UTF-8')
 
     return HttpResponse('OK')
+
+
+def _convert_to_dictlist(messages):
+    """
+    Converts the messages given, to a dictlist.
+
+    :param messages: The messages to convert, as a QuerySet or list.
+    :returns: A list of dicts.
+    """
+    message_dict = []
+
+    # Convert messages to a dict.
+    for message in messages:
+        message_dict.append({
+            'id': message.pk,
+            'username': message.username,
+            'message': message.message,
+            'timestamp': message.timestamp.isoformat(),
+        })
+
+    return message_dict
