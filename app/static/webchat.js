@@ -14,6 +14,7 @@ $(function() {
     var username = $('input#username');
     var input = $('input#input');
     var textarea = $('div#chat');
+    var now = moment();
 
 
     // handle enter in the input field to click the "Send" button.
@@ -75,7 +76,15 @@ $(function() {
     };
 
     var date_to_string = function(date) {
-        return date.format('YYYY-MM-DD HH:mm');
+        if (now.year() === date.year()) {
+            if (now.month() === date.month() && now.date() === date.date()) {
+                return date.format('HH:mm');
+            } else {
+                return date.format('MM-DD HH:mm');
+            }
+        } else {
+            return date.format('YYYY-MM-DD HH:mm');
+        }
     };
 
     // Renders JSON to HTML, that can be appended to the existing messages.
@@ -86,16 +95,14 @@ $(function() {
         });
 
         // Render the template using underscore.
-        var template = _.template(
+        return _.template(
             '<% _.each(messages, function(message) { %>' +
-                '<span class="time">[<%= message.formatted_timestamp %>]</span> ' +
-                '<span class="username"><%= message.username %></span> ' +
+                '<span class="time">[<%= message.formatted_timestamp %>] </span>' +
+                '<span class="username"><%= message.username %>:</span> ' +
                 '<span class="message"><%= message.message %></span><br />' +
-                '<% }); %>');
-        var rendered = template({
+                '<% }); %>')({
             messages: messages
         });
-        return rendered;
     };
 
     var append_textarea = function(html) {

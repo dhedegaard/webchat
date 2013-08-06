@@ -1,3 +1,11 @@
+body {
+    font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+}
+
+pre {
+    font-family: "Ubuntu Mono", "Courier New", Courier, monospace;
+}
+
 #chat {
     overflow: auto;
     height: 400px;
@@ -10,13 +18,12 @@
 }
 
 .time {
-    color: #888888;
-}
-
-.message {
-    font-weight: bold;
+    color: #999999;
+    font-size: small;
+    font-family: "Ubuntu Mono", "Courier New", Courier, monospace;
 }
 
 .username {
-    color: #0000DD;
+    color: #0078ca;
+    font-weight: bold;
 }
