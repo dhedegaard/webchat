@@ -1,12 +1,12 @@
-import cgi
 import time
 import json
 
-from django.core.context_processors import csrf
 from django.shortcuts import render
 from django.http import HttpResponseBadRequest, HttpResponse
+from django.utils.html import strip_tags
 
 from models import Message
+from forms import MessageForm, RequestNewForm
 
 
 SLEEP_SECONDS = 20
@@ -17,6 +17,23 @@ def index(request):
     Renders the main template.
     """
     return render(request, 'index.html')
+
+
+def _form_errors_to_httpresponse(form):
+    """
+    Converts an invalid form to a HttpResponse, where the errors are converted
+    to a json string in the response.
+
+    :param form: A form that failed validation.
+    :returns: A django HttpResponse object, containing information about the
+              failed validation in a JSON object, with a json mimetype.
+    """
+    errors = form.errors
+    result = {}
+    for error in errors:
+        result[error] = ', '.join(errors[error])
+    return HttpResponseBadRequest(json.dumps(result),
+                                  mimetype='application/json; charset=UTF-8')
 
 
 def send(request):
@@ -36,46 +53,18 @@ def send(request):
     if request.method != 'POST':
         return HttpResponseBadRequest('Only use POST method!')
 
-    # Validate that arguments exist in the request.
-    for arg in ('message', 'username', ):
-        if not arg in request.POST:
-            return HttpResponseBadRequest(
-                'missing %s argument in request.' % arg)
-
-    # Make sure to escape embedded HTML.
-    message = cgi.escape(request.POST['message'])
-    username = cgi.escape(request.POST['username'])
-
-    MAX_MESSAGE_LENGTH = Message._meta.get_field('message').max_length
-    MAX_USERNAME_LENGTH = Message._meta.get_field('username').max_length
-    message_len = len(message)
-    username_len = len(username)
-
-    # Validate length higher than 0.
-    if message_len == 0:
-        return HttpResponseBadRequest('message argument is empty.')
-    if username_len == 0:
-        return HttpResponseBadRequest('username argument is empty.')
-
-    # Validate length within model bounds.
-    if message_len > MAX_MESSAGE_LENGTH:
-        return HttpResponseBadRequest(
-            'message too long (%s is higher than %s).' % (
-                message_len, MAX_MESSAGE_LENGTH,
-            ))
-    if username_len > MAX_USERNAME_LENGTH:
-        return HttpResponseBadRequest(
-            'username too long (%s is higher then %s).' % (
-                username_len, MAX_USERNAME_LENGTH,
-            ))
+    # Parse and validate input.
+    form = MessageForm(request.POST)
+    if not request.is_ajax() or not form.is_valid():
+        return _form_errors_to_httpresponse(form)
 
     # Make the new message, and save it in the backend.
     msg = Message()
-    msg.message = message
-    msg.username = username
+    msg.message = strip_tags(form.cleaned_data['message'])
+    msg.username = strip_tags(form.cleaned_data['username'])
     msg.save()
 
-    return HttpResponse('OK')
+    return HttpResponse('OK', mimetype='text/plain; charset=UTF-8')
 
 
 def get_new(request):
@@ -101,10 +90,11 @@ def get_new(request):
     if request.method != 'POST':
         return HttpResponseBadRequest('Only POST method!')
 
-    if 'id' not in request.POST:
-        return HttpResponseBadRequest('No \'id\' parameter')
+    form = RequestNewForm(request.POST)
+    if not form.is_valid():
+        return _form_errors_to_httpresponse(form)
 
-    id = request.POST['id']
+    id = form.cleaned_data['id']
     for _ in xrange(SLEEP_SECONDS):
         # Query the backend for messages since "id".
         messages = Message.get_new_messages(id)
@@ -129,7 +119,7 @@ def get_new(request):
         return HttpResponse(json.dumps(result),
                             mimetype='application/json; charset=UTF-8')
 
-    return HttpResponse('OK')
+    return HttpResponse('OK', mimetype='text/plain; charset=UTF-8')
 
 
 def _convert_to_dictlist(messages):

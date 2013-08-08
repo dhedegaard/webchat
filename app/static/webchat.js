@@ -55,14 +55,28 @@ $(function() {
             input.val('');
             input.focus();
         }).fail(function(data) {
-            var status = data.status;
-            var statusText = data.statusText;
-
-            // If we've hit a 400 (Bad Request), show the responseText.
-            if (status === 400) {
-                statusText += ": " + data.responseText;
+            var is_json;
+            var json;
+            try {
+                var json = $.parseJSON(data.responseText);
+                is_json = true;
+            } catch (e) {
+                is_json = false;
             }
-            add_error(status + " " + statusText);
+
+            if (is_json) {
+                add_json_error(data, json);
+            } else {
+                // Show the response text as plaintext.
+                var status = data.status;
+                var statusText = data.statusText;
+
+                // If we've hit a 400 (Bad Request), show the responseText.
+                if (status === 400) {
+                    statusText += ": " + data.responseText;
+                }
+                add_error(status + " " + statusText);
+            }
         }).always(function() {
             btn_send.removeClass('disabled');
         });
@@ -116,9 +130,20 @@ $(function() {
     };
 
     var add_error = function(data) {
-        var line = '<span class="error">Error:<br /><pre>' + data + '</pre></span>';
+        var line = '<span class="error"><span class="bold">Error</span>:<br /><pre>' +
+            data + '</pre></span>';
         append_textarea(line);
     };
+
+    var add_json_error = function(data, json) {
+        append_textarea(_.template(
+            '<span class=error"><span class="bold">Error</span>:<br /><pre>' +
+            '<%_.forEach(json, function(value, key) {%>' +
+                '<%=key%>: <%=value%>\n' +
+            '<%})%>' +
+            '</pre></<span>'
+        , {json: json}));
+    }
 
     /* The last highest ID of a message, this is to avoid returning the same messages
      * more than once.
