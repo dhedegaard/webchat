@@ -15,6 +15,11 @@ $(function() {
     var input = $('input#input');
     var textarea = $('div#chat');
     var now = moment();
+    var in_unload = false;
+
+    $(window).bind('beforeunload', function() {
+        in_unload = true;
+    });
 
 
     // handle enter in the input field to click the "Send" button.
@@ -58,7 +63,7 @@ $(function() {
             var is_json;
             var json;
             try {
-                var json = $.parseJSON(data.responseText);
+                json = $.parseJSON(data.responseText);
                 is_json = true;
             } catch (e) {
                 is_json = false;
@@ -125,11 +130,15 @@ $(function() {
     };
 
     var add_messages = function(messages) {
+        if (in_unload)
+            return;
         var rendered_messages = render_messages(messages);
         append_textarea(rendered_messages);
     };
 
     var add_error = function(data) {
+        if (in_unload)
+            return;
         var line = '<span class="error"><span class="bold">Error</span>:<br /><pre>' +
             data + '</pre></span>';
         append_textarea(line);
@@ -141,9 +150,8 @@ $(function() {
             '<%_.forEach(json, function(value, key) {%>' +
                 '<%=key%>: <%=value%>\n' +
             '<%})%>' +
-            '</pre></<span>'
-        , {json: json}));
-    }
+            '</pre></<span>', {json: json}));
+    };
 
     /* The last highest ID of a message, this is to avoid returning the same messages
      * more than once.
