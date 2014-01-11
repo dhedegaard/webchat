@@ -197,6 +197,12 @@ $(function() {
                 add_error(e);
             }
         }).fail(function(data) {
+            /* Seems to happen on hibernate, the request will restart. */
+            if (data.status === 0) {
+                return;
+            }
+
+            /* A fail has happened, increment the counter. */
             failed_requests_in_a_row += 1;
 
             /* Format the error string into something readable, instead of [Object object]. */
