@@ -6,25 +6,23 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Webchat</title>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
   <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Ubuntu:400,700' rel='stylesheet' type='text/css' />
   <link type="text/css" rel="stylesheet" href="{% static 'webchat.css' %}"/>
 </head>
 <body>
   {% csrf_token %}
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h2>Webchat</h2>
-        <div class="visible-lg">
-          <p>If a simple long-polling based chat solution could be defined as fun, this would be one of those.</p>
-          <p>Source available here:
-            <a href="https://bitbucket.org/dennishedegaard/webchat">https://bitbucket.org/dennishedegaard/webchat</a></p>
-          <hr />
-        </div>
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <span class="navbar-brand">Webchat</span>
+      </div>
+      <div class="collapse navbar-collapse">
+        <p class="navbar-text navbar-right">A simple webchat implemented in Django - <a href="https://bitbucket.org/dennishedegaard/webchat" target="_blank" class="navbar-link">Get the source!</a></p>
       </div>
     </div>
+  </nav>
+  <div class="container">
     <div class="row">
       <div class="col-12">
         <div id="chat" class="form-control"></div>
@@ -44,8 +42,8 @@
                  placeholder="Enter a message and hit Enter..." />
           <span class="input-group-btn">
             <button class="btn btn-default" id="btn_send" type="button">
-              <i class="icon-envelope hidden-lg"></i>
-              <span class="visible-lg"><i class="icon-envelope"></i> Send</span>
+              <i class="glyphicon glyphicon-send hidden-lg"></i>
+              <span class="visible-lg"><i class="glyphicon glyphicon-send"></i> Send</span>
             </button>
           </span>
         </div>
