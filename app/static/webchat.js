@@ -161,6 +161,11 @@ $(function() {
     /* Contains the current number of failed requests (for get_new_messages) in a row. */
     var failed_requests_in_a_row = 0;
 
+    var remove_spinner = function() {
+        if (textarea.hasClass('spinner'))
+            textarea.removeClass('spinner');
+    };
+
     /* Gets new messages from the server by initiating an AJAX POST-request.
      * If any new message(s) was found, some JSON in returned.
      * If no new message(s) was found, "OK" is returned.
@@ -179,6 +184,7 @@ $(function() {
             failed_requests_in_a_row = 0;
             // this is caused by long polling timeout.
             if (result === 'OK') {
+                remove_spinner();
                 return;
             }
 
@@ -193,6 +199,7 @@ $(function() {
             try {
                 lastid = result.lastid;
                 add_messages(result.messages);
+                remove_spinner();
             } catch (e) {
                 add_error(e);
             }
