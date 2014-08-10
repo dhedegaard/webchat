@@ -1,0 +1,310 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 203.0,
+		"selected_items":
+		[
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"view",
+				"View In Browser"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"brow",
+				"Preferences: Browse Packages"
+			],
+			[
+				"settings",
+				"Preferences: Settings - User"
+			],
+			[
+				"new file",
+				"ANF: New File"
+			],
+			[
+				"enable pack",
+				"Package Control: Enable Package"
+			],
+			[
+				"pref",
+				"Preferences: Browse Packages"
+			],
+			[
+				"view in",
+				"View In Browser"
+			],
+			[
+				"view in ",
+				"View In Browser"
+			],
+			[
+				"view ",
+				"View In Browser"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"indent",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"javascrip",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"java",
+				"Set Syntax: Java"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"git commit",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"git",
+				"Git: Init"
+			],
+			[
+				"commen",
+				"Toggle Comment"
+			],
+			[
+				"package insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 493.0
+	},
+	"console":
+	{
+		"height": 76.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/dennis/Desktop/webchat/app/static/webchat.js",
+		"/Users/dennis/Desktop/webchat/webchat/settings.py",
+		"/Users/dennis/Desktop/gwbasic/index.html",
+		"/Users/dennis/Desktop/gwbasic/style.css",
+		"/Users/dennis/Desktop/gwbasic/gwbasic.js",
+		"/Users/dennis/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/dennis/Library/Application Support/Sublime Text 2/Packages/View In Browser/View In Browser.sublime-settings",
+		"/Users/dennis/Desktop/sudokujs/sudoku.js",
+		"/Users/dennis/Desktop/sudokujs/.gitignore",
+		"/Users/dennis/Library/Application Support/Sublime Text 2/Packages/User/Node.js.sublime-build",
+		"/Users/dennis/Desktop/bold/bold.html",
+		"/Users/dennis/Desktop/bold/bold.js",
+		"/Users/dennis/Library/Application Support/Sublime Text 2/Packages/SideBarEnhancements/messages/11.13.2012.1305.0.txt",
+		"/Users/dennis/Desktop/urls/urls/settings.py",
+		"/Users/dennis/Desktop/urls/app/views.py",
+		"/Users/dennis/Desktop/urls/app/templates/login.html",
+		"/Users/dennis/Desktop/urls/app/templates/create.html",
+		"/Users/dennis/Desktop/urls/app/templates/base.html",
+		"/Users/dennis/Desktop/urls/app/templates/list.html"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"true",
+			"check_board",
+			"accel_d",
+			"horiz",
+			"console",
+			"col-lg"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"col-md"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 166.0
+	},
+	"output.git":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"webch.js",
+				"app/static/webchat.js"
+			],
+			[
+				".js",
+				"app/static/webchat.js"
+			],
+			[
+				"sett",
+				"webchat/settings.py"
+			],
+			[
+				"gw",
+				"gwbasic.js"
+			],
+			[
+				"",
+				"/Users/dennis/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings"
+			],
+			[
+				"list",
+				"list.py"
+			],
+			[
+				"js",
+				"bold.js"
+			],
+			[
+				"settings",
+				"urls/settings.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}

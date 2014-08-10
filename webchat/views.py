@@ -32,8 +32,8 @@ def _form_errors_to_httpresponse(form):
     result = {}
     for error in errors:
         result[error] = ', '.join(errors[error])
-    return HttpResponseBadRequest(json.dumps(result),
-                                  mimetype='application/json; charset=UTF-8')
+    return HttpResponseBadRequest(
+        json.dumps(result), mimetype='application/json; charset=UTF-8')
 
 
 def send(request):
@@ -102,12 +102,15 @@ def get_new(request):
 
         # If no messages was found, sleep and try again.
         if message_count == 0:
+            # If id is -1, this is the initial request, return immediately.
+            if id == -1:
+                return HttpResponse('OK', mimetype='text/plain')
             time.sleep(1)
             continue
 
         # Never return more than 100 messages at once.
         if message_count > 100:
-            messages = messages[message_count-100:]
+            messages = messages[message_count - 100:]
 
         # Convert the QuerySet to a dictlist.
         messages_dict = _convert_to_dictlist(messages)
@@ -116,10 +119,10 @@ def get_new(request):
             'messages': messages_dict,
             'lastid': max([message.pk for message in messages]),
         }
-        return HttpResponse(json.dumps(result),
-                            mimetype='application/json; charset=UTF-8')
+        return HttpResponse(
+            json.dumps(result), mimetype='application/json; charset=UTF-8')
 
-    return HttpResponse('OK', mimetype='text/plain; charset=UTF-8')
+    return HttpResponse('OK', mimetype='text/plain')
 
 
 def _convert_to_dictlist(messages):

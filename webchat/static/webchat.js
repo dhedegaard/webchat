@@ -185,6 +185,9 @@ $(function() {
             // this is caused by long polling timeout.
             if (result === 'OK') {
                 remove_spinner();
+                if (lastid === -1) {
+                    lastid = 0;
+                }
                 return;
             }
 

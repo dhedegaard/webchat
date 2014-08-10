@@ -77,7 +77,6 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -87,7 +86,6 @@ SECRET_KEY = 'o0nf6j0)b-w#k#ziy4smu*ac_#2ev8ml6t+wi$rk=48lck(qo!'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -105,20 +103,19 @@ ROOT_URLCONF = 'webchat.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'webchat.wsgi.application'
 
-TEMPLATE_DIRS = (os.path.join(ROOT, '../app/templates').replace('\\', '/'),)
+TEMPLATE_DIRS = ''
 
 INSTALLED_APPS = (
+    # Django stuff
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-    'app',
+
+    # Applications
+    'webchat',
 )
 
 # A sample logging configuration. The only tangible logging

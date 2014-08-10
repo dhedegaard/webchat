@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns('',
-    url(r'^$', 'app.views.index'),
-    url(r'^send$', 'app.views.send'),
-    url(r'^get_new$', 'app.views.get_new'),
+    url(r'^$', 'webchat.views.index', name='index'),
+    url(r'^send$', 'webchat.views.send', name='send'),
+    url(r'^get_new$', 'webchat.views.get_new', name='get_new'),
 )
