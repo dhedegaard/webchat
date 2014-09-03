@@ -103,8 +103,6 @@ ROOT_URLCONF = 'webchat.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'webchat.wsgi.application'
 
-TEMPLATE_DIRS = ''
-
 INSTALLED_APPS = (
     # Django stuff
     'django.contrib.auth',
@@ -146,3 +144,5 @@ LOGGING = {
         },
     }
 }
+
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'

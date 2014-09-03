@@ -1,8 +1,7 @@
 import time
-import json
 
 from django.shortcuts import render
-from django.http import HttpResponseBadRequest, HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.utils.html import strip_tags
 
 from models import Message
@@ -32,8 +31,7 @@ def _form_errors_to_httpresponse(form):
     result = {}
     for error in errors:
         result[error] = ', '.join(errors[error])
-    return HttpResponseBadRequest(
-        json.dumps(result), mimetype='application/json; charset=UTF-8')
+    return JsonResponse(result, status=400)
 
 
 def send(request):
@@ -64,7 +62,7 @@ def send(request):
     msg.username = strip_tags(form.cleaned_data['username'])
     msg.save()
 
-    return HttpResponse('OK', mimetype='text/plain; charset=UTF-8')
+    return HttpResponse('OK', content_type='text/plain; charset=UTF-8')
 
 
 def get_new(request):
@@ -104,7 +102,7 @@ def get_new(request):
         if message_count == 0:
             # If id is -1, this is the initial request, return immediately.
             if id == -1:
-                return HttpResponse('OK', mimetype='text/plain')
+                return HttpResponse('OK', content_type='text/plain')
             time.sleep(1)
             continue
 
@@ -119,10 +117,9 @@ def get_new(request):
             'messages': messages_dict,
             'lastid': max([message.pk for message in messages]),
         }
-        return HttpResponse(
-            json.dumps(result), mimetype='application/json; charset=UTF-8')
+        return JsonResponse(result)
 
-    return HttpResponse('OK', mimetype='text/plain')
+    return HttpResponse('OK', content_type='text/plain')
 
 
 def _convert_to_dictlist(messages):
