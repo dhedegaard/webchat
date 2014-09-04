@@ -1,61 +1,60 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Webchat</title>
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Ubuntu:400,700' rel='stylesheet' type='text/css' />
-  <link type="text/css" rel="stylesheet" href="{% static 'webchat.css' %}"/>
-</head>
-<body>
-  {% csrf_token %}
-  <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webchat</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Ubuntu:400,700' rel='stylesheet' type='text/css' />
+    <link type="text/css" rel="stylesheet" href="{% static 'webchat.css' %}"/>
+  </head>
+  <body>
+    {% csrf_token %}
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <span class="navbar-brand">Webchat</span>
+        </div>
+        <div class="collapse navbar-collapse">
+          <p class="navbar-text navbar-right">A simple webchat implemented in Django - <a href="https://bitbucket.org/dennishedegaard/webchat" target="_blank" class="navbar-link">Get the source!</a></p>
+        </div>
+      </div>
+    </nav>
     <div class="container">
-      <div class="navbar-header">
-        <span class="navbar-brand">Webchat</span>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="chat" class="form-control spinner"></div>
+        </div>
       </div>
-      <div class="collapse navbar-collapse">
-        <p class="navbar-text navbar-right">A simple webchat implemented in Django - <a href="https://bitbucket.org/dennishedegaard/webchat" target="_blank" class="navbar-link">Get the source!</a></p>
+      <div class="row">
+        <label class="bold col-sm-4 col-md-2" for="username">Username:</label>
+        <label class="bold col-sm-8 col-md-10" for="input">Message:</label>
       </div>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div id="chat" class="form-control spinner"></div>
-      </div>
-    </div>
-    <div class="row">
-      <label class="bold col-sm-4 col-md-2" for="username">Username:</label>
-      <label class="bold col-sm-8 col-md-10" for="input">Message:</label>
-    </div>
-    <div class="row">
-      <div class="col-xs-4 col-md-2">
-        <input class="form-control" id="username" name="username" type="text" placeholder="anon" />
-      </div>
-      <div class="col-xs-8 col-md-10">
-        <div class="input-group">
-          <input class="form-control" id="input" name="input" type="text"
-                 placeholder="Enter a message and hit Enter..." />
-          <span class="input-group-btn">
+      <div class="row">
+        <div class="col-xs-4 col-md-2">
+          <input class="form-control" id="username" name="username" type="text" placeholder="anon" />
+        </div>
+        <div class="col-xs-8 col-md-10">
+          <div class="input-group">
+            <input class="form-control" id="input" name="input" type="text"
+            placeholder="Enter a message and hit Enter..." />
+            <span class="input-group-btn">
             <button class="btn btn-default" id="btn_send" type="button">
-              <i class="glyphicon glyphicon-send hidden-lg"></i>
-              <span class="visible-lg"><i class="glyphicon glyphicon-send"></i> Send</span>
+            <i class="glyphicon glyphicon-send hidden-lg"></i>
+            <span class="visible-lg"><i class="glyphicon glyphicon-send"></i> Send</span>
             </button>
-          </span>
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
-  <script type="text/javascript" src="{% static 'webchat.js' %}"></script>
-</body>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
+    <script type="text/javascript" src="{% static 'webchat.js' %}?2"></script>
+  </body>
 </html>

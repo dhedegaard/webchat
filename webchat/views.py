@@ -1,3 +1,4 @@
+import json
 import time
 
 from django.shortcuts import render
@@ -24,14 +25,13 @@ def _form_errors_to_httpresponse(form):
     to a json string in the response.
 
     :param form: A form that failed validation.
-    :returns: A django HttpResponse object, containing information about the
-              failed validation in a JSON object, with a json mimetype.
+    :returns: A django JsonResponse object, containing information about the
+              failed validation.
     """
-    errors = form.errors
-    result = {}
-    for error in errors:
-        result[error] = ', '.join(errors[error])
-    return JsonResponse(result, status=400)
+    # There might be a better way to do this, but giving the JSON string
+    # directly to JsonResponse does not seem to work.
+    json_output = form.errors.as_json()
+    return JsonResponse(json.loads(json_output), status=400, safe=False)
 
 
 def send(request):

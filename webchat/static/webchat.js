@@ -148,7 +148,7 @@ $(function() {
         append_textarea(_.template(
             '<span class=error"><span class="bold">Error</span>:<br /><pre>' +
             '<%_.forEach(json, function(value, key) {%>' +
-                '<%=key%>: <%=value%>\n' +
+                '<%=key%>: <%=value[0].message%>\n' +
             '<%})%>' +
             '</pre></<span>', {json: json}));
     };
