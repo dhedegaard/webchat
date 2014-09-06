@@ -30,8 +30,8 @@ def _form_errors_to_httpresponse(form):
     """
     # There might be a better way to do this, but giving the JSON string
     # directly to JsonResponse does not seem to work.
-    json_output = form.errors.as_json()
-    return JsonResponse(json.loads(json_output), status=400, safe=False)
+    return HttpResponse(form.errors.as_json(), status=400,
+                        content_type='application/json')
 
 
 def send(request):
