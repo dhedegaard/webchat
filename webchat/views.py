@@ -4,6 +4,7 @@ import time
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.utils.html import strip_tags
+from django.views.decorators.http import require_POST
 
 from models import Message
 from forms import MessageForm, RequestNewForm
@@ -34,6 +35,7 @@ def _form_errors_to_httpresponse(form):
                         content_type='application/json')
 
 
+@require_POST
 def send(request):
     """
     This view is called when the client wants to send a message.
@@ -48,12 +50,9 @@ def send(request):
     If it fails, a 400 Bad Request is returned, with a body describing the
     fault.
     """
-    if request.method != 'POST':
-        return HttpResponseBadRequest('Only use POST method!')
-
     # Parse and validate input.
     form = MessageForm(request.POST)
-    if not request.is_ajax() or not form.is_valid():
+    if not form.is_valid():
         return _form_errors_to_httpresponse(form)
 
     # Make the new message, and save it in the backend.
@@ -65,6 +64,7 @@ def send(request):
     return HttpResponse('OK', content_type='text/plain; charset=UTF-8')
 
 
+@require_POST
 def get_new(request):
     """
     This method is called from the client when it wants to check if there are
@@ -85,9 +85,6 @@ def get_new(request):
     "message" contains HTML that can be injected into a textarea.
      "lastid" is the highest ID in the new message(s).
     """
-    if request.method != 'POST':
-        return HttpResponseBadRequest('Only POST method!')
-
     form = RequestNewForm(request.POST)
     if not form.is_valid():
         return _form_errors_to_httpresponse(form)
