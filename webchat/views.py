@@ -92,7 +92,7 @@ def get_new(request):
     id = form.cleaned_data['id']
     for _ in xrange(SLEEP_SECONDS):
         # Query the backend for messages since "id".
-        messages = Message.get_new_messages(id)
+        messages = Message.objects.new_messages(id)
         message_count = messages.count()
 
         # If no messages was found, sleep and try again.
