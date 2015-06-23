@@ -89,7 +89,7 @@ def get_new(request):
         return _form_errors_to_httpresponse(form)
 
     id = form.cleaned_data['id']
-    for _ in xrange(SLEEP_SECONDS):
+    for _ in range(SLEEP_SECONDS):
         # Query the backend for messages since "id".
         messages = Message.objects.new_messages(id)
         message_count = messages.count()
