@@ -1,6 +1,6 @@
 from django import forms
 
-from models import Message
+from .models import Message
 
 
 class MessageForm(forms.Form):

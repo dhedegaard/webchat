@@ -1,4 +1,3 @@
-import json
 import time
 
 from django.shortcuts import render
@@ -6,8 +5,8 @@ from django.http import HttpResponse, JsonResponse
 from django.utils.html import strip_tags
 from django.views.decorators.http import require_POST
 
-from models import Message
-from forms import MessageForm, RequestNewForm
+from .models import Message
+from .forms import MessageForm, RequestNewForm
 
 
 SLEEP_SECONDS = 20
