@@ -6,8 +6,8 @@ python:
 - 3.4
 
 install:
-- pip install -q -r requirements.txt --use-mirrors
-- pip install coveralls
+- pip install -q -r requirements.txt
+- pip install -q coveralls
 
 script: coverage run --source=webchat manage.py test
 
