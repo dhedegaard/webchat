@@ -51,3 +51,6 @@ javadoc
 webchat.db
 static_collect
 .idea
+.coverage
+htmlcov
+venv
