@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.db import models
 
 
@@ -25,7 +27,7 @@ class Message(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return u'%d, %s, %s, %s' % (  # pragma: nocover
+        return '%d, %s, %s, %s' % (  # pragma: nocover
             self.pk, self.timestamp,
             self.username, self.message,
         )
