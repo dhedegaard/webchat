@@ -1,5 +1,5 @@
 [report]
-omit = venv*,wsgi.py
+omit = venv*,webchat/wsgi.py
 exclude_lines=
     pragma: nocover
     def __repr__
