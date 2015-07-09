@@ -103,7 +103,7 @@ def get_new(request):
             continue
 
         # Never return more than 100 messages at once.
-        if message_count > 100:
+        if message_count > 100:  # pragma: nocover
             messages = messages[message_count - 100:]
 
         # Convert the QuerySet to a dictlist.
