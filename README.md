@@ -10,3 +10,4 @@ Future development might involve:
 - Using websockets
 - More structure on the javascript, for instance using backbone.js
 - Test coverage on javascript
+- Running the whole thing from docker.

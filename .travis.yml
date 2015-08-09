@@ -6,10 +6,18 @@ python:
 - 3.3
 - 3.4
 - pypy
+- pypy3
+- nightly
 
 env:
 - DJANGO_VERSION=1.7.9
 - DJANGO_VERSION=1.8.3
+
+matrix:
+  allow_failures:
+    - python: pypy
+    - python: pypy3
+    - python: nightly
 
 install:
 - pip install -q -r requirements.txt
