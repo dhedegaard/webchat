@@ -1,0 +1,36 @@
+# Docker compose for running the project in production.
+# It exposes
+# Remember to:
+# - change the django secret in settings.
+# - change the postfix user/pass.
+# - change the postgres pass.
+uwsgi:
+  build: .
+  volumes:
+   - ./static_collect:./static_collect
+  dockerfile: Dockerfile.prod
+  restart: always
+  environment:
+   - WEBCHAT_DEBUG=True
+   - WEBCHAT_DATABASE=postgres
+  ports:
+   - "9090"
+  links:
+   - db
+   - mail
+
+db:
+  image: postgres
+  restart: always
+  environment:
+   - POSTGRES_USER=webchat
+   - POSTGRES_PASSWORD=webchat123
+  volumes:
+   - ./data:/var/lib/postgresql/data
+
+mail:
+  image: catatnight/postfix
+  restart: always
+  environment:
+   - maildomain=webchat.dhedegaard.dk
+   - smtp_user=webchat:webchat123

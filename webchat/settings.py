@@ -1,13 +1,14 @@
 # Django settings for webchat project.
+import os
 
-DEBUG = True
+# DEBUG by default.
+DEBUG = os.environ.get('WEBCHAT_DEBUG', 'True') == 'True'
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Dennis Hedegaard', 'dennis@dhedegaard.dk'),
 )
 
-import os
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')).replace('\\', '/')
 
 MANAGERS = ADMINS
@@ -15,15 +16,38 @@ MANAGERS = ADMINS
 ALLOWED_HOSTS = ['wc.dhedegaard.dk', 'webchat.dhedegaard.dk',
                  'wc.neo2k.dk', 'webchat.neo2k.dk']
 
+# Mail server settings, reference the docker container.
+EMAIL_HOST = 'mail'
+EMAIL_HOST_USER = 'webchat'
+EMAIL_HOST_PASSWORD = 'webchat123'
+EMAIL_SUBJECT_PREFIX = '[webchat] '
+SERVER_EMAIL = 'webchat@webchat.dhedegaard.dk'
+
+# For running development (default).
+DATABASE_SQLITE = {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': 'webchat.db',
+    'USER': '',
+    'PASSWORD': '',
+    'HOST': '',
+    'PORT': '',
+}
+
+# For running in production.
+DATABASE_POSTGRES = {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'webchat',
+    'USER': 'webchat',
+    'PASSWORD': 'webchat123',
+    'HOST': 'db',
+    'PORT': '',
+}
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'webchat.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
+    'default': (
+        DATABASE_POSTGRES
+        if os.environ.get('WEBCHAT_DATABASE', 'sqlite') == 'postgres' else
+        DATABASE_SQLITE),
 }
 
 # Local time zone for this installation. Choices can be found here:
