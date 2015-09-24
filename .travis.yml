@@ -26,5 +26,5 @@ install:
 script: coverage run --source=webchat manage.py test
 
 after_success:
-    coveralls
-    codecov
+- coveralls
+- codecov
