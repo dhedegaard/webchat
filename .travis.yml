@@ -20,10 +20,11 @@ matrix:
 
 install:
 - pip install -q -r requirements.txt
-- pip install -q coveralls
+- pip install -q coveralls codecov
 - pip install -q Django==$DJANGO_VERSION
 
 script: coverage run --source=webchat manage.py test
 
 after_success:
     coveralls
+    codecov
