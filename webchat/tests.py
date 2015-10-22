@@ -41,6 +41,13 @@ class ViewTestCase(TestCase):
         self.assertEqual(len(jsonresp['message']), 1)
         self.assertEqual(jsonresp['message'][0]['code'], 'required')
 
+    def test_get_new__no_messages(self):
+        resp = self.client.post(reverse('get_new'), {
+            'id': -1,
+        })
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.content, b'OK')
+
     def test_get_new__invalid(self):
         resp = self.client.post(reverse('get_new'))
         self.assertEqual(resp.status_code, 400)
