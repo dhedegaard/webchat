@@ -1,4 +1,4 @@
-Django==1.9.7
+Django==1.9.8
 requests==2.10.0
 coverage==4.1
 mock==2.0.0
