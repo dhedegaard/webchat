@@ -1,7 +1,6 @@
 # Django settings for webchat project.
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Dennis Hedegaard', 'dennis@dhedegaard.dk'),
@@ -82,12 +81,6 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'o0nf6j0)b-w#k#ziy4smu*ac_#2ev8ml6t+wi$rk=48lck(qo!'
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
-
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -144,5 +137,13 @@ LOGGING = {
         },
     }
 }
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+    },
+]
+
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
