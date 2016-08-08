@@ -1,4 +1,4 @@
 Django==1.10
-requests==2.10.0
+requests==2.11.0
 coverage==4.2
 mock==2.0.0
