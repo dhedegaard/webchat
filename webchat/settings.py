@@ -1,4 +1,5 @@
 # Django settings for webchat project.
+import os
 
 DEBUG = True
 
@@ -6,18 +7,18 @@ ADMINS = (
     ('Dennis Hedegaard', 'dennis@dhedegaard.dk'),
 )
 
-import os
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')).replace('\\', '/')
+ROOT = os.path.abspath(os.path.join(
+    os.path.dirname(__file__), '..')).replace('\\', '/')
 
 MANAGERS = ADMINS
 
-ALLOWED_HOSTS = ['wc.dhedegaard.dk', 'webchat.dhedegaard.dk',
+ALLOWED_HOSTS = ['localhost', 'wc.dhedegaard.dk', 'webchat.dhedegaard.dk',
                  'wc.neo2k.dk', 'webchat.neo2k.dk']
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'webchat.db',                      # Or path to database file if using sqlite3.
+        'NAME': 'webchat.db',            # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.

@@ -23,38 +23,7 @@
         </div>
       </div>
     </nav>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div id="chat" class="form-control spinner"></div>
-        </div>
-      </div>
-      <div class="row">
-        <label class="bold col-xs-4 col-sm-2" for="username">Username:</label>
-        <label class="bold col-xs-8 col-sm-10" for="input">Message:</label>
-      </div>
-      <div class="row">
-        <div class="col-xs-4 col-sm-2">
-          <input class="form-control" id="username" name="username" type="text" placeholder="anon" />
-        </div>
-        <div class="col-xs-8 col-sm-10">
-          <div class="input-group">
-            <input class="form-control" id="input" name="input" type="text"
-            placeholder="Enter a message and hit Enter..." />
-            <span class="input-group-btn">
-            <button class="btn btn-default" id="btn_send" type="button">
-            <i class="glyphicon glyphicon-send hidden-lg"></i>
-            <span class="visible-lg"><i class="glyphicon glyphicon-send"></i> Send</span>
-            </button>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
-    <script type="text/javascript" src="{% static 'webchat.js' %}?2"></script>
+    <div class="container" id="container"></div>
+    <script type="text/javascript" src="{% static 'bundle.js' %}"></script>
   </body>
 </html>

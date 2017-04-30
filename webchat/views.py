@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.utils.html import strip_tags
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import Message
 from .forms import MessageForm, RequestNewForm
@@ -34,6 +35,7 @@ def _form_errors_to_httpresponse(form):
                         content_type='application/json')
 
 
+@csrf_exempt
 @require_POST
 def send(request):
     """
@@ -63,6 +65,7 @@ def send(request):
     return HttpResponse('OK', content_type='text/plain; charset=UTF-8')
 
 
+@csrf_exempt
 @require_POST
 def get_new(request):
     """

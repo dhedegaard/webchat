@@ -54,3 +54,5 @@ static_collect
 .coverage
 htmlcov
 venv
+node_modules
+yarn.lock
