@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "webpack -w"
+    "watch": "webpack -w",
+    "start": "webpack -p"
   },
   "dependencies": {
     "jquery": "^3.2.1",
