@@ -27,10 +27,12 @@ export default class ChatContainer extends React.Component {
         $.post('/get_new', {
             id: this.state.lastid
         }, data => {
-            this.setState({
-                lastid: data.lastid,
-                message: this.state.message.concat(data.messages)
-            });
+            if (data !== 'OK') {
+                this.setState({
+                    lastid: data.lastid,
+                    message: this.state.message.concat(data.messages)
+                });
+            }
             setTimeout(this.fetchMessages.bind(this), 100);
         });
     }
