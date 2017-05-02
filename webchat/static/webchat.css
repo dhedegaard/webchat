@@ -1,11 +1,3 @@
-body {
-    font-family: "Ubuntu", Arial, Helvetica, sans-serif;
-}
-
-pre {
-    font-family: "Ubuntu Mono", "Courier New", Courier, monospace;
-}
-
 #chat {
     overflow: auto;
     height: 400px;
@@ -19,8 +11,8 @@ pre {
 
 .time {
     color: #999999;
-    font-size: small;
-    font-family: "Ubuntu Mono", "Courier New", Courier, monospace;
+    font-size: x-small;
+    font-family: "Courier New", Courier, monospace;
 }
 
 .username {
