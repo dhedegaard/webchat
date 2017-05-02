@@ -2,13 +2,15 @@ import React from "react";
 import $ from "jquery";
 
 import Message from "./ChatContainer/Message";
+import ErrorMessage from "./ChatContainer/ErrorMessage";
 
 
 export default class ChatContainer extends React.Component {
     constructor() {
         super();
+        this.failcount = 0;
         this.state = {
-            message: [],
+            messages: [],
             lastid: -1
         };
     }
@@ -28,29 +30,39 @@ export default class ChatContainer extends React.Component {
             id: this.state.lastid
         }, data => {
             if (data !== 'OK') {
+                let messages = this.state.messages;
+                data.messages.forEach(message => {
+                    messages.push(
+                        <Message
+                            key={message.id}
+                            username={message.username}
+                            timestamp={message.timestamp}
+                            message={message.message} />
+                    );
+                });
                 this.setState({
                     lastid: data.lastid,
-                    message: this.state.message.concat(data.messages)
+                    messages: messages
                 });
             }
             setTimeout(this.fetchMessages.bind(this), 100);
+        }).fail(jqxhr => {
+            this.setState({
+                messages: this.state.messages.concat([
+                    <ErrorMessage
+                        key={1000000000 + ++this.failcount}
+                        statusCode={jqxhr.statusCode}
+                        statusText={jqxhr.statusText} />
+                ])
+            });
+            setTimeout(this.fetchMessages.bind(this), 5000);
         });
     }
 
     render() {
-        let messages = []
-        this.state.message.forEach(message => {
-            messages.push(
-                <Message key={message.id}
-                         username={message.username}
-                         timestamp={message.timestamp}
-                         message={message.message} />
-            );
-        })
-
         this.div = (
             <div ref="chat" id="chat" className="form-control">
-                {messages}
+                {this.state.messages}
             </div>
         );
         return this.div;

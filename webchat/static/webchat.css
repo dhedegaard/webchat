@@ -27,7 +27,3 @@ pre {
     color: #0078ca;
     font-weight: bold;
 }
-
-.spinner {
-    background: url('ajax_load.gif') no-repeat center;
-}
