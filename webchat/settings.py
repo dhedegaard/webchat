@@ -148,3 +148,10 @@ TEMPLATES = [
 
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+try:
+    import git
+except ImportError:
+    GIT_HASH = ''
+else:
+    GIT_HASH = git.Repo(search_parent_directories=True).head.object.hexsha
+

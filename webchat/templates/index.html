@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Webchat</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link href='//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Ubuntu:400,700' rel='stylesheet' type='text/css' />
     <link type="text/css" rel="stylesheet" href="{% static 'webchat.css' %}"/>
   </head>
   <body>
@@ -24,6 +23,6 @@
       </div>
     </nav>
     <div class="container" id="container"></div>
-    <script type="text/javascript" src="{% static 'bundle.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bundle.js' %}?{{ GIT_HASH }}"></script>
   </body>
 </html>

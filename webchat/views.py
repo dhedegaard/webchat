@@ -1,5 +1,6 @@
 import time
 
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.utils.html import strip_tags
@@ -17,7 +18,9 @@ def index(request):
     """
     Renders the main template.
     """
-    return render(request, 'index.html')
+    return render(request, 'index.html', {
+        'GIT_HASH': settings.GIT_HASH,
+    })
 
 
 def _form_errors_to_httpresponse(form):
