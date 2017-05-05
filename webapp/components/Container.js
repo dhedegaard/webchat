@@ -66,7 +66,7 @@ export default class Container extends React.Component {
                         <input ref="input" className="form-control" id="input" value={this.state.message} onChange={this.messageChange.bind(this)} onKeyPress={this.messageKeyPress.bind(this)} name="input" type="text" autoFocus={true} />
                         <span className="input-group-btn">
                             <button className="btn btn-default" type="button" onClick={this.sendMessage.bind(this)}>
-                                <i className="glyphicon glyphicon-send hidden-lg"></i><span className="visible-lg"><i className="glyphicon glyphicon-send"></i>Send</span>
+                                <i className="glyphicon glyphicon-send hidden-lg"></i><span className="visible-lg"><i className="glyphicon glyphicon-send"></i> Send</span>
                             </button>
                         </span>
                     </div>
