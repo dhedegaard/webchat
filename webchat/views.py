@@ -102,9 +102,6 @@ def get_new(request):
 
         # If no messages was found, sleep and try again.
         if message_count == 0:
-            # If id is -1, this is the initial request, return immediately.
-            if id == -1:
-                return HttpResponse('OK', content_type='text/plain')
             time.sleep(1)
             continue
 
