@@ -51,7 +51,7 @@ export default class ChatContainer extends React.Component {
                 messages: this.state.messages.concat([
                     <ErrorMessage
                         key={1000000000 + ++this.failcount}
-                        statusCode={jqxhr.statusCode}
+                        statusCode={jqxhr.status}
                         statusText={jqxhr.statusText} />
                 ])
             });
