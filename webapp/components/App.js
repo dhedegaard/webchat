@@ -3,7 +3,7 @@ import $ from "jquery";
 
 import ChatContainer from "./ChatContainer";
 
-export default class Container extends React.Component {
+export default class App extends React.Component {
     constructor() {
         super();
         this.state = {
