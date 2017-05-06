@@ -31,18 +31,27 @@ export default class Container extends React.Component {
     }
 
     sendMessage() {
-        let message = this.state.message;
-        if (!message || message === '') {
-            alert("Message is empty");
-            return;
-        }
-
         $.post('/send', {
-            message: message,
+            message: this.state.message,
             username: this.state.username || 'anon'
-        });
-        this.setState({
-            message: ''
+        }, () => {
+            // In case of success, clear the message.
+            this.setState({
+                message: ''
+            });
+        }).fail(jqxhr => {
+            if (jqxhr.status === 400) {
+                // Bad request usually means bad input, or missing message.
+                let jsonResp = JSON.parse(jqxhr.responseText);
+                if (jsonResp !== undefined && jsonResp.message !== undefined) {
+                    alert(`Message: ${jsonResp.message[0].message}`);
+                } else {
+                    alert(`Unknown error ${jqxhr.responseText}`);
+                }
+            } else {
+                // If anything else happened, show it to the user
+                alert(`Error from the server: ${jqxhr.status}: ${jqxhr.statusText}`);
+            }
         });
     }
 
