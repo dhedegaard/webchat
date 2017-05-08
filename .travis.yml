@@ -21,6 +21,7 @@ matrix:
 
 # Install a recent nodejs
 before_install:
+- sudo apt-get remove nodejs
 - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 - sudo apt-get install -y -q nodejs
 - node --version
