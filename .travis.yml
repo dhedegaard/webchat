@@ -34,7 +34,7 @@ install:
 - pip install -q Django==$DJANGO_VERSION
 - node --version
 - npm --version
-- cd webapp && npm install && npm start & cd ..
+- sh -c "cd webapp && npm install && npm start && cd .."
 
 script: coverage run --source=webchat manage.py test
 
