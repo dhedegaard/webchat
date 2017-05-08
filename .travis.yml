@@ -27,6 +27,8 @@ before_install:
 - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 - sudo apt-get install -y -q nodejs
 - node --version
+- which node
+- /usr/bin/node --version
 
 # Install various python dependencies
 install:
