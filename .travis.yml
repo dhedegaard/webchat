@@ -23,6 +23,7 @@ matrix:
 before_install:
 - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 - sudo apt-get install -y -q nodejs
+- node --version
 
 # Install various python dependencies
 install:
@@ -30,13 +31,10 @@ install:
 - pip install -q coveralls codecov
 - pip install -q Django==$DJANGO_VERSION
 
-# Test building the javascript bundle
-before_script:
-- node --version
-- sh -c "cd webapp && npm install --silent && npm start && cd .."
-
-# Run python tests with test coverage
-script: coverage run --source=webchat manage.py test
+# Run python tests with test coverage and build the webapp bundle
+script:
+- coverage run --source=webchat manage.py test
+- cd webapp && npm install --silent && npm start && cd ..
 
 after_success:
 - coveralls
