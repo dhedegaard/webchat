@@ -23,11 +23,8 @@ matrix:
 
 # Install a recent nodejs
 before_install:
-- sudo apt-get remove nodejs
 - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 - sudo apt-get install -y -q nodejs
-- node --version
-- which node
 - /usr/bin/node --version
 
 # Install various python dependencies
@@ -39,7 +36,7 @@ install:
 # Run python tests with test coverage and build the webapp bundle
 script:
 - coverage run --source=webchat manage.py test
-- cd webapp && npm install --silent && npm start && cd ..
+- cd webapp && /usr/bin/npm install --silent && /usr/bin/npm start && cd ..
 
 after_success:
 - coveralls
