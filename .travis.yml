@@ -9,7 +9,7 @@ python:
 - pypy3
 
 node_js:
- - "node"
+- "node"
 
 env:
 - DJANGO_VERSION=1.7.11
@@ -32,6 +32,8 @@ install:
 - pip install -q -r requirements.txt
 - pip install -q coveralls codecov
 - pip install -q Django==$DJANGO_VERSION
+- node --version
+- npm --version
 - cd webapp && npm install && npm start & cd ..
 
 script: coverage run --source=webchat manage.py test
