@@ -8,9 +8,6 @@ python:
 - pypy
 - pypy3
 
-node_js:
-- 7
-
 env:
 - DJANGO_VERSION=1.7.11
 - DJANGO_VERSION=1.8.18
@@ -29,14 +26,22 @@ matrix:
     - python: 3.6
       env: DJANGO_VERSION=1.7.11
 
+# Install a recent nodejs
+before_install:
+- curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+- sudo apt-get install -y nodejs
+
+# Install various python dependencies
 install:
 - pip install -q -r requirements.txt
 - pip install -q coveralls codecov
 - pip install -q Django==$DJANGO_VERSION
-- node --version
-- npm --version
+
+# Test building the javascript bundle
+before_script:
 - sh -c "cd webapp && npm install --silent && npm start && cd .."
 
+# Run python tests with test coverage
 script: coverage run --source=webchat manage.py test
 
 after_success:
