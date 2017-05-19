@@ -1,7 +1,5 @@
 language: python
 
-sudo: required
-
 python:
 - 2.7
 - 3.4
@@ -21,22 +19,13 @@ matrix:
     - python: pypy
     - python: pypy3
 
-# Install a recent nodejs
-before_install:
-- curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-- sudo apt-get install -y -q nodejs
-- /usr/bin/node --version
-
-# Install various python dependencies
 install:
 - pip install -q -r requirements.txt
 - pip install -q coveralls codecov
 - pip install -q Django==$DJANGO_VERSION
 
-# Run python tests with test coverage and build the webapp bundle
 script:
 - coverage run --source=webchat manage.py test
-- cd webapp && /usr/bin/npm install --silent && /usr/bin/npm start && cd ..
 
 after_success:
 - coveralls
