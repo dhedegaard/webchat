@@ -40,7 +40,8 @@ class ViewTestCase(TestCase):
         self.assertEqual(len(jsonresp['message']), 1)
         self.assertEqual(jsonresp['message'][0]['code'], 'required')
 
-    def test_get_new__no_messages(self):
+    @mock.patch('webchat.views.time')
+    def test_get_new__no_messages(self, time_patch):
         resp = self.client.post(reverse('get_new'), {
             'id': -1,
         })
@@ -49,6 +50,9 @@ class ViewTestCase(TestCase):
             'lastid': -1,
             'messages': [],
         })
+
+        self.assertEqual(time_patch.sleep.call_count, 20)
+        time_patch.sleep.assert_called_with(1)
 
     def test_get_new__invalid(self):
         resp = self.client.post(reverse('get_new'))
@@ -69,7 +73,8 @@ class ViewTestCase(TestCase):
             'messages': [],
         })
         self.assertEqual(resp['Content-Type'], 'application/json')
-        self.assertTrue(time_patch.sleep.called)
+        self.assertEqual(time_patch.sleep.call_count, 20)
+        time_patch.sleep.assert_called_with(1)
 
     def test_get_new__new_message(self):
         msg = Message.objects.create(
