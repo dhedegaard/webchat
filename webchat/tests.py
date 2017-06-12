@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-import json
 
 import mock
 from django.core.urlresolvers import reverse
@@ -36,7 +35,7 @@ class ViewTestCase(TestCase):
             'username': 'testuser',
         })
         self.assertEqual(resp.status_code, 400)
-        jsonresp = json.loads(resp.content.decode())
+        jsonresp = resp.json()
         self.assertTrue('message' in jsonresp)
         self.assertEqual(len(jsonresp['message']), 1)
         self.assertEqual(jsonresp['message'][0]['code'], 'required')
@@ -46,12 +45,15 @@ class ViewTestCase(TestCase):
             'id': -1,
         })
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.content, b'OK')
+        self.assertEqual(resp.json(), {
+            'lastid': -1,
+            'messages': [],
+        })
 
     def test_get_new__invalid(self):
         resp = self.client.post(reverse('get_new'))
         self.assertEqual(resp.status_code, 400)
-        jsonresp = json.loads(resp.content.decode())
+        jsonresp = resp.json()
         self.assertTrue('id' in jsonresp)
         self.assertEqual(len(jsonresp['id']), 1)
         self.assertEqual(jsonresp['id'][0]['code'], 'required')
@@ -62,8 +64,11 @@ class ViewTestCase(TestCase):
             'id': 0,
         })
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.content, b'OK')
-        self.assertEqual(resp['Content-Type'], 'text/plain')
+        self.assertEqual(resp.json(), {
+            'lastid': -1,
+            'messages': [],
+        })
+        self.assertEqual(resp['Content-Type'], 'application/json')
         self.assertTrue(time_patch.sleep.called)
 
     def test_get_new__new_message(self):
@@ -76,7 +81,7 @@ class ViewTestCase(TestCase):
         })
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp['Content-Type'], 'application/json')
-        jsonresp = json.loads(resp.content.decode())
+        jsonresp = resp.json()
         self.assertEqual(jsonresp['lastid'], msg.pk)
         self.assertEqual(len(jsonresp['messages']), 1)
         self.assertEqual(jsonresp['messages'][0]['id'], msg.pk)

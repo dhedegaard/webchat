@@ -1,5 +1,4 @@
 import React from "react";
-import $ from "jquery";
 
 import ChatContainer from "./ChatContainer";
 
@@ -31,27 +30,38 @@ export default class App extends React.Component {
     }
 
     sendMessage() {
-        $.post('/send', {
-            message: this.state.message,
-            username: this.state.username || 'anon'
-        }, () => {
-            // In case of success, clear the message.
-            this.setState({
-                message: ''
-            });
-        }).fail(jqxhr => {
-            if (jqxhr.status === 400) {
-                // Bad request usually means bad input, or missing message.
-                let jsonResp = JSON.parse(jqxhr.responseText);
-                if (jsonResp !== undefined && jsonResp.message !== undefined) {
-                    alert(`Message: ${jsonResp.message[0].message}`);
-                } else {
-                    alert(`Unknown error ${jqxhr.responseText}`);
-                }
-            } else {
-                // If anything else happened, show it to the user
-                alert(`Error from the server: ${jqxhr.status}: ${jqxhr.statusText}`);
+        /* Check for empty message. */
+        if (!this.state.message) {
+            return;
+        }
+
+        let data = new FormData();
+        data.append('message', this.state.message);
+        data.append('username', this.state.username || 'anon');
+        fetch('/send', {
+            method: 'post',
+            body: data
+        }).then(response => {
+            /* Success, clear the input field. */
+            if (response.ok) {
+                this.setState({
+                    message: ''
+                });
+                return;
             }
+            /* Handle bad request. */
+            if (response.status === 400) {
+                return response.json();
+            }
+            /* Otherwise, throw whatever happened. */
+            throw new Error(`Error from the server: ${response.status}: ${response.statusText}`)
+        }).then(json => {
+            if (!json) {
+                return;
+            }
+            throw new Error(`Message: ${json.message[0].message}`);
+        }).catch(err => {
+            alert(err);
         });
     }
 

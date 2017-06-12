@@ -1,7 +1,10 @@
 const path = require('path');
 
 module.exports = {
-    entry: './index.js',
+    entry: [
+        'whatwg-fetch',
+        './index.js'
+    ],
     output: {
         path: path.resolve('../webchat/static'),
         filename: 'bundle.js'
@@ -14,4 +17,3 @@ module.exports = {
         ]
     }
 }
- 

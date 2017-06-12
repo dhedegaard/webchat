@@ -112,13 +112,15 @@ def get_new(request):
         # Convert the QuerySet to a dictlist.
         messages_dict = _convert_to_dictlist(messages)
 
-        result = {
+        return JsonResponse({
             'messages': messages_dict,
             'lastid': max([message.pk for message in messages]),
-        }
-        return JsonResponse(result)
+        })
 
-    return HttpResponse('OK', content_type='text/plain')
+    return JsonResponse({
+        'messages': [],
+        'lastid': id or -1,
+    })
 
 
 def _convert_to_dictlist(messages):
