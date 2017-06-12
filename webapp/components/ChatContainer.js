@@ -35,7 +35,6 @@ export default class ChatContainer extends React.Component {
             }
             throw new Error(`Error in response: ${response.status} ${response.statusText}`);
         }).then(data => {
-            console.log('DATA:', data);
             let messages = this.state.messages;
             data.messages.forEach(message => {
                 messages.push(
