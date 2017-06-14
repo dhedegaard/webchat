@@ -2,7 +2,8 @@ const path = require('path');
 
 module.exports = {
     entry: [
-        'babel-polyfill',
+        'babel-polyfill',  // For Promise on IE.
+        'whatwg-fetch',  // For fetch on IE.
         './index.js'
     ],
     output: {
