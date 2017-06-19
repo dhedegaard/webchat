@@ -1,33 +1,36 @@
-import React from "react";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 import Message from "./ChatContainer/Message";
 import ErrorMessage from "./ChatContainer/ErrorMessage";
 
+export interface IChatContainerProps {}
+export interface IChatContainerState {
+    lastid: number;
+    messages: JSX.Element[];
+}
 
-export default class ChatContainer extends React.Component {
-    constructor() {
-        super();
-        this.failcount = 0;
-        this.state = {
-            messages: [],
-            lastid: -1
-        };
-    }
+export default class ChatContainer extends React.Component<IChatContainerProps, IChatContainerState> {
+    failcount: number = 0;
+    state: IChatContainerState = {
+        messages: [],
+        lastid: -1,
+    };
 
-    componentDidMount() {
+    componentDidMount(): void {
         this.fetchMessages.bind(this)();
     }
 
-    componentDidUpdate() {
-        let elem = this.refs.chat;
+    componentDidUpdate(): void {
+        let elem: Element = ReactDOM.findDOMNode(this.refs.chat);
         elem.scrollTop = elem.scrollHeight;
     }
 
-    fetchMessages() {
-        let formData = new FormData();
-        formData.append('id', this.state.lastid);
-        fetch('/get_new', {
-            method: 'post',
+    fetchMessages(): void {
+        let formData: FormData = new FormData();
+        formData.append("id", this.state.lastid.toString());
+        fetch("/get_new", {
+            method: "post",
             body: formData
         }).then(response => {
             if (response.ok) {
@@ -35,7 +38,7 @@ export default class ChatContainer extends React.Component {
             }
             throw new Error(`Error in response: ${response.status} ${response.statusText}`);
         }).then(data => {
-            let messages = this.state.messages;
+            let messages: JSX.Element[] = this.state.messages;
             data.messages.forEach(message => {
                 messages.push(
                     <Message
@@ -62,12 +65,11 @@ export default class ChatContainer extends React.Component {
         });
     }
 
-    render() {
-        this.div = (
+    render(): JSX.Element {
+        return (
             <div ref="chat" id="chat" className="form-control">
                 {this.state.messages}
             </div>
         );
-        return this.div;
     }
 }
