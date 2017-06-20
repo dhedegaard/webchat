@@ -7,10 +7,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Webchat</title>
-    <link type="text/css" rel="stylesheet" href="{% static 'bundle.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'bundle.css' %}?{{ GIT_HASH }}"/>
   </head>
   <body>
-    {% csrf_token %}
     <div class="container">
       <a class="float-right" href="https://github.com/dhedegaard/webchat">
         Get the source!
