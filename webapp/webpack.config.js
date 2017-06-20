@@ -37,7 +37,12 @@ module.exports = {
                         options: {
                             sourceMap: true
                         }
-                    }, 'sass-loader'],
+                    }, {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }],
                     publicPath: '../webchat/static'
                 }),
                 exclude: /node_modules/
