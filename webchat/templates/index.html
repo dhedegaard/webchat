@@ -2,26 +2,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8"/>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Webchat</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="{% static 'webchat.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'bundle.css' %}"/>
   </head>
   <body>
     {% csrf_token %}
-    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <span class="navbar-brand">Webchat</span>
-        </div>
-        <div class="collapse navbar-collapse">
-          <p class="navbar-text navbar-right">A simple webchat implemented using Django and React - <a href="https://github.com/dhedegaard/webchat" target="_blank" class="navbar-link">Get the source!</a></p>
-        </div>
-      </div>
-    </nav>
+    <div class="container">
+      <a class="float-right" href="https://github.com/dhedegaard/webchat">
+        Get the source!
+      </a>
+      <h2>Webchat</h2>
+    </div>
     <div class="container" id="container"></div>
     <script type="text/javascript" src="{% static 'bundle.js' %}?{{ GIT_HASH }}"></script>
   </body>

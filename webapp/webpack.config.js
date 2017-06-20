@@ -1,10 +1,12 @@
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: [
         'babel-polyfill',  // For Promise on IE.
         'whatwg-fetch',  // For fetch on IE.
-        './index.tsx'
+        './index.tsx',
+        './scss/style.scss'
     ],
     output: {
         path: path.resolve('../webchat/static'),
@@ -15,9 +17,38 @@ module.exports = {
     },
     devtool: 'source-map',
     module: {
-        loaders: [
-            { test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules/ },
-            { test: /\.tsx?$/, loader: ['babel-loader', 'ts-loader'], exclude: /node_modules/ }
+        rules: [
+            {
+                test: /\.jsx?$/,
+                use: 'babel-loader',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.tsx?$/,
+                use: ['babel-loader', 'ts-loader'],
+                exclude: /node_modules/
+            },
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [{
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }, 'sass-loader'],
+                    publicPath: '../webchat/static'
+                }),
+                exclude: /node_modules/
+            }
         ]
-    }
+    },
+    plugins: [
+        new ExtractTextPlugin({
+            filename: 'bundle.css',
+            disable: false,
+            allChunks: true
+        })
+    ]
 };

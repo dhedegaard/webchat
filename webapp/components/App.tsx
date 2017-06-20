@@ -92,8 +92,7 @@ export default class App extends React.Component<undefined, IAppState> {
                                onKeyPress={this.messageKeyPress.bind(this)}
                                name="input" type="text" autoFocus={true} />
                         <span className="input-group-btn">
-                            <button className="btn btn-default" type="button" onClick={this.sendMessage.bind(this)}>
-                                <i className="glyphicon glyphicon-send hidden-lg"></i>
+                            <button className="btn btn-success" type="button" onClick={this.sendMessage.bind(this)}>
                                 <span className="visible-lg"><i className="glyphicon glyphicon-send"></i> Send</span>
                             </button>
                         </span>

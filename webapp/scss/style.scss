@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+@import './_bootstrap';
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 #chat {
     overflow: auto;
     height: 400px;
