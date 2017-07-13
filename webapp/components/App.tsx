@@ -76,8 +76,8 @@ export default class App extends React.Component<undefined, IAppState> {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="bold col-xs-4 col-sm-2" htmlFor="username">Username:</div>
-                    <div className="bold col-xs-8 col-sm-10" htmlFor="input">Message:</div>
+                    <div className="bold col-xs-4 col-sm-2"><label htmlFor="username">Username:</label></div>
+                    <div className="bold col-xs-8 col-sm-10"><label htmlFor="input">Message:</label></div>
                 </div>
                 <div className="row">
                     <div className="col-xs-4 col-sm-2">
