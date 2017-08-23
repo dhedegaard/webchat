@@ -76,16 +76,16 @@ export default class App extends React.Component<undefined, IAppState> {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="bold col-xs-4 col-sm-2"><label htmlFor="username">Username:</label></div>
-                    <div className="bold col-xs-8 col-sm-10"><label htmlFor="input">Message:</label></div>
+                    <div className="bold col-4 col-sm-2"><label htmlFor="username">Username:</label></div>
+                    <div className="bold col-8 col-sm-10"><label htmlFor="input">Message:</label></div>
                 </div>
                 <div className="row">
-                    <div className="col-xs-4 col-sm-2">
+                    <div className="col-4 col-sm-2">
                         <input className="form-control" value={this.state.username}
                                onChange={this.usernameChange.bind(this)} id="username"
                                name="username" type="text" placeholder="anon" />
                     </div>
-                    <div className="col-xs-8 col-sm-10 input-group">
+                    <div className="col-8 col-sm-10 input-group">
                         <input ref="input" className="form-control" id="input"
                                value={this.state.message}
                                onChange={this.messageChange.bind(this)}
