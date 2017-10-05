@@ -49,6 +49,7 @@ export default class App extends React.Component<undefined, IAppState> {
                 this.setState({
                     message: ""
                 });
+                document.getElementById('input').focus();
                 return;
             }
             /* Handle bad request. */
