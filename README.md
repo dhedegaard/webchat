@@ -9,7 +9,7 @@ A simple Django app for doing webchat over HTTP, the frontend is implemented in 
 
 ## For running the Django part of the project
 
-Make sure you've got a recent python (2.7 or 3.4+) installed, with `pip` and `virtualenv`
+Make sure you've got a recent python (3.4+, 2.7 not supported by Django 2.0+) installed, with `pip` and `virtualenv`
 
 Usually for developing, I do something like:
 
