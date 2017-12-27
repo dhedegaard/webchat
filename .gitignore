@@ -58,3 +58,4 @@ node_modules
 yarn.lock
 webchat/static/bundle.js*
 webchat/static/bundle.css*
+.vscode
