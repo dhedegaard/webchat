@@ -152,5 +152,5 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 try:
     import git
     GIT_HASH = git.Repo(search_parent_directories=True).head.object.hexsha
-except:
+except Exception:
     GIT_HASH = ''
