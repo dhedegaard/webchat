@@ -1,23 +1,18 @@
 language: python
 
 python:
-- 2.7
 - 3.4
 - 3.5
 - 3.6
-- pypy
 - pypy3
 
 env:
-- DJANGO_VERSION=1.9.13
-- DJANGO_VERSION=1.10.7
-- DJANGO_VERSION=1.11.1
+- DJANGO_VERSION=1.11.8  # LTS
+- DJANGO_VERSION=2.0  # Current
 
 matrix:
   allow_failures:
-    - python: pypy
     - python: pypy3
-    - python: 2.7
 
 install:
 - pip install -q -r requirements.txt
