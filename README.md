@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/dhedegaard/webchat.svg?branch=master)](https://travis-ci.org/dhedegaard/webchat)
 [![Coverage Status](https://coveralls.io/repos/dhedegaard/webchat/badge.svg?branch=master)](https://coveralls.io/r/dhedegaard/webchat?branch=master)
 [![Requirements Status](https://requires.io/github/dhedegaard/webchat/requirements.svg?branch=master)](https://requires.io/github/dhedegaard/webchat/requirements/?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b378ae9e1faa460999054d27a399750a)](https://www.codacy.com/app/dhedegaard/webchat)
 
 A simple Django app for doing webchat over HTTP, the frontend is implemented in React using Typescript, and uses the fetch API for long polling.
 
