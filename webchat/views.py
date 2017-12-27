@@ -94,10 +94,10 @@ def get_new(request):
     if not form.is_valid():
         return _form_errors_to_httpresponse(form)
 
-    id = form.cleaned_data['id']
+    form_id = form.cleaned_data['id']
     for _ in range(SLEEP_SECONDS):
         # Query the backend for messages since "id".
-        messages = Message.objects.new_messages(id)
+        messages = Message.objects.new_messages(form_id)
         message_count = messages.count()
 
         # If no messages was found, sleep and try again.
@@ -119,7 +119,7 @@ def get_new(request):
 
     return JsonResponse({
         'messages': [],
-        'lastid': id or -1,
+        'lastid': form_id or -1,
     })
 
 
