@@ -4,10 +4,17 @@ import * as ReactDOM from "react-dom";
 import Message from "./ChatContainer/Message";
 import ErrorMessage from "./ChatContainer/ErrorMessage";
 
-export interface IChatContainerProps {}
-export interface IChatContainerState {
+interface IChatContainerProps {}
+interface IChatContainerState {
     lastid: number;
     messages: JSX.Element[];
+}
+
+interface ResponseMessage {
+    id: number;
+    message: string;
+    timestamp: string;
+    username: string;
 }
 
 export default class ChatContainer extends React.Component<IChatContainerProps, IChatContainerState> {
@@ -38,8 +45,8 @@ export default class ChatContainer extends React.Component<IChatContainerProps, 
             }
             throw new Error(`Error in response: ${response.status} ${response.statusText}`);
         }).then(data => {
-            let messages: JSX.Element[] = this.state.messages;
-            data.messages.forEach(message => {
+            let messages = this.state.messages;
+            data.messages.forEach((message: ResponseMessage) => {
                 messages.push(
                     <Message
                         key={message.id}

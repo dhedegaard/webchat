@@ -7,7 +7,7 @@ interface IAppState {
     message: string;
 }
 
-export default class App extends React.Component<undefined, IAppState> {
+export default class App extends React.Component<{}, IAppState> {
     state = {
         username: "",
         message: "",
@@ -49,7 +49,10 @@ export default class App extends React.Component<undefined, IAppState> {
                 this.setState({
                     message: ""
                 });
-                document.getElementById('input').focus();
+                let input = document.getElementById('input') as HTMLElement;
+                if (input) {
+                    input.focus();
+                }
                 return;
             }
             /* Handle bad request. */
@@ -83,15 +86,15 @@ export default class App extends React.Component<undefined, IAppState> {
                 <div className="row">
                     <div className="col-4 col-sm-2">
                         <input className="form-control" value={this.state.username}
-                               onChange={this.usernameChange.bind(this)} id="username"
-                               name="username" type="text" placeholder="anon" />
+                            onChange={this.usernameChange.bind(this)} id="username"
+                            name="username" type="text" placeholder="anon" />
                     </div>
                     <div className="col-8 col-sm-10 input-group">
                         <input ref="input" className="form-control" id="input"
-                               value={this.state.message}
-                               onChange={this.messageChange.bind(this)}
-                               onKeyPress={this.messageKeyPress.bind(this)}
-                               name="input" type="text" autoFocus={true} />
+                            value={this.state.message}
+                            onChange={this.messageChange.bind(this)}
+                            onKeyPress={this.messageKeyPress.bind(this)}
+                            name="input" type="text" autoFocus={true} />
                         <span className="input-group-btn">
                             <button className="btn btn-success" type="button" onClick={this.sendMessage.bind(this)}>
                                 <span className="visible-lg"><i className="glyphicon glyphicon-send"></i> Send</span>
