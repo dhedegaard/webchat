@@ -15,10 +15,9 @@ module.exports = {
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".jsx"],
         alias: {
-            'react': 'preact-compat',
-            'react-dom': 'preact-compat',
-            // Not necessary unless you consume a module using `createClass`
-            'create-react-class': 'preact-compat/lib/create-react-class'
+            "react": "preact-compat",
+            "react-dom": "preact-compat",
+            "create-react-class": "preact-compat/lib/create-react-class"
         }
     },
     devtool: "source-map",
@@ -62,4 +61,4 @@ module.exports = {
             allChunks: true
         })
     ]
-}
+};
