@@ -8,7 +8,7 @@ interface IAppState {
 }
 
 export default class App extends React.Component<undefined, IAppState> {
-    state: IAppState = {
+    state = {
         username: "",
         message: "",
     };

@@ -13,7 +13,13 @@ module.exports = {
         filename: "bundle.js"
     },
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".jsx"]
+        extensions: [".ts", ".tsx", ".js", ".jsx"],
+        alias: {
+            'react': 'preact-compat',
+            'react-dom': 'preact-compat',
+            // Not necessary unless you consume a module using `createClass`
+            'create-react-class': 'preact-compat/lib/create-react-class'
+        }
     },
     devtool: "source-map",
     module: {
@@ -56,4 +62,4 @@ module.exports = {
             allChunks: true
         })
     ]
-};
+}

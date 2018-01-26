@@ -22,7 +22,7 @@ export default class ChatContainer extends React.Component<IChatContainerProps, 
     }
 
     componentDidUpdate(): void {
-        let elem: Element = ReactDOM.findDOMNode(this.refs.chat);
+        let elem = this.refs.chat as HTMLElement;
         elem.scrollTop = elem.scrollHeight;
     }
 
