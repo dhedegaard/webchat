@@ -37,7 +37,7 @@ export default class App extends React.Component<{}, IAppState> {
             return;
         }
 
-        let data: FormData = new FormData();
+        let data = new FormData();
         data.append("message", this.state.message);
         data.append("username", this.state.username || "anon");
         fetch("/send", {
@@ -71,7 +71,7 @@ export default class App extends React.Component<{}, IAppState> {
         });
     }
 
-    render(): JSX.Element {
+    render() {
         return (
             <div>
                 <div className="row">

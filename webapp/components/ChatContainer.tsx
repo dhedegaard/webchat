@@ -18,7 +18,7 @@ interface ResponseMessage {
 }
 
 export default class ChatContainer extends React.Component<IChatContainerProps, IChatContainerState> {
-    failcount: number = 0;
+    failcount = 0;
     state: IChatContainerState = {
         messages: [],
         lastid: -1,
@@ -34,7 +34,7 @@ export default class ChatContainer extends React.Component<IChatContainerProps, 
     }
 
     fetchMessages(): void {
-        let formData: FormData = new FormData();
+        let formData = new FormData();
         formData.append("id", this.state.lastid.toString());
         fetch("/get_new", {
             method: "post",
@@ -72,7 +72,7 @@ export default class ChatContainer extends React.Component<IChatContainerProps, 
         });
     }
 
-    render(): JSX.Element {
+    render() {
         return (
             <div ref="chat" id="chat" className="form-control">
                 {this.state.messages}

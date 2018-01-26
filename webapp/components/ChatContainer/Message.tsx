@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-export interface IMessageProps {
+interface IMessageProps {
     username: string;
     message: string;
     timestamp: string;
@@ -9,11 +9,11 @@ export interface IMessageProps {
 
 export default class Message extends React.Component<IMessageProps, {}> {
     formattedTimestamp(): string {
-        let timestampIsoString: string = new Date(this.props.timestamp).toISOString();
+        let timestampIsoString = new Date(this.props.timestamp).toISOString();
         return timestampIsoString.slice(0, 10) + " " + timestampIsoString.slice(11, 19);
     }
 
-    render(): JSX.Element {
+     render() {
         return (
             <div>
                 <span className="time">[{this.formattedTimestamp.bind(this)()}] </span>&nbsp;
