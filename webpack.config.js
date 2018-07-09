@@ -5,11 +5,11 @@ module.exports = {
     entry: [
         "babel-polyfill",  // For Promise on IE.
         "whatwg-fetch",  // For fetch on IE.
-        "./index.tsx",
-        "./scss/style.scss"
+        "./webapp/index.tsx",
+        "./webapp/scss/style.scss"
     ],
     output: {
-        path: path.resolve("../webchat/static"),
+        path: path.resolve("./webchat/static"),
         filename: "bundle.js"
     },
     resolve: {
@@ -43,7 +43,7 @@ module.exports = {
                             sourceMap: true
                         }
                     }],
-                    publicPath: "../webchat/static"
+                    publicPath: "./webchat/static"
                 }),
                 exclude: /node_modules/
             }
