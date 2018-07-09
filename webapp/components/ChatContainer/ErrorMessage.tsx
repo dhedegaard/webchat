@@ -1,17 +1,16 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 interface IErrorMessageProps {
-    message: string;
+  message: string;
 }
 
 export default class ErrorMessage extends React.Component<IErrorMessageProps, {}> {
-    render() {
-        return (
-            <div className="alert alert-danger">
-                <span>An error occured, retrying in 5 seconds:</span><br />
-                {this.props.message}
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="alert alert-danger">
+        <span>An error occured, retrying in 5 seconds:</span><br />
+        {this.props.message}
+      </div>
+    );
+  }
 }
