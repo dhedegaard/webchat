@@ -1,26 +1,26 @@
 import * as React from "react";
 
-import Message from "./ChatContainer/Message";
 import ErrorMessage from "./ChatContainer/ErrorMessage";
+import Message from "./ChatContainer/Message";
 
-interface IChatContainerProps {}
 interface IChatContainerState {
   lastid: number;
   messages: JSX.Element[];
 }
 
-interface ResponseMessage {
+interface IResponseMessage {
   id: number;
   message: string;
   timestamp: string;
   username: string;
 }
 
-export default class ChatContainer extends React.Component<IChatContainerProps, IChatContainerState> {
+export default class ChatContainer extends React.Component<{}, IChatContainerState> {
+  chat!: HTMLDivElement;
   failcount = 0;
   state: IChatContainerState = {
-    messages: [],
     lastid: -1,
+    messages: [],
   };
 
   componentDidMount(): void {
@@ -28,44 +28,46 @@ export default class ChatContainer extends React.Component<IChatContainerProps, 
   }
 
   componentDidUpdate(): void {
-    let elem = this.refs.chat as HTMLElement;
+    const elem = this.chat;
     elem.scrollTop = elem.scrollHeight;
   }
 
   fetchMessages(): void {
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("id", this.state.lastid.toString());
     fetch("/get_new", {
+      body: formData,
       method: "post",
-      body: formData
-    }).then(response => {
+    }).then((response) => {
       if (response.ok) {
         return response.json();
       }
       throw new Error(`Error in response: ${response.status} ${response.statusText}`);
-    }).then(data => {
-      let messages = this.state.messages;
-      data.messages.forEach((message: ResponseMessage) => {
+    }).then((data) => {
+      const messages = this.state.messages;
+      data.messages.forEach((message: IResponseMessage) => {
         messages.push(
           <Message
             key={message.id}
             username={message.username}
             timestamp={message.timestamp}
-            message={message.message} />
+            message={message.message}
+          />,
         );
       });
       this.setState({
         lastid: data.lastid,
-        messages: messages
+        messages,
       });
       setTimeout(this.fetchMessages.bind(this), 100);
-    }).catch(err => {
+    }).catch((err) => {
       this.setState({
-        messages: this.state.messages.concat([
+        messages: [...this.state.messages, (
           <ErrorMessage
             key={1000000000 + ++this.failcount}
-            message={err.message} />
-        ])
+            message={err.message}
+          />
+        )],
       });
       setTimeout(this.fetchMessages.bind(this), 5000);
     });
@@ -73,7 +75,7 @@ export default class ChatContainer extends React.Component<IChatContainerProps, 
 
   render() {
     return (
-      <div ref="chat" id="chat" className="form-control">
+      <div ref={(elem) => { this.chat = elem!; }} id="chat" className="form-control">
         {this.state.messages}
       </div>
     );

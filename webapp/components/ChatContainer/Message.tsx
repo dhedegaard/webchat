@@ -8,7 +8,7 @@ interface IMessageProps {
 
 export default class Message extends React.Component<IMessageProps, {}> {
   formattedTimestamp(): string {
-    let timestampIsoString = new Date(this.props.timestamp).toISOString();
+    const timestampIsoString = new Date(this.props.timestamp).toISOString();
     return timestampIsoString.slice(0, 10) + " " + timestampIsoString.slice(11, 19);
   }
 
