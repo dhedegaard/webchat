@@ -26,7 +26,8 @@ def index(request):
         'GIT_HASH': settings.GIT_HASH,
         'initial_state': {
             'messages': messages_dict,
-            'lastid': max([message.pk for message in messages]),
+            'lastid': (max([message.pk for message in messages])
+                       if messages else -1),
         },
     })
 
