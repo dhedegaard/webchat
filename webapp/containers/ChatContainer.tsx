@@ -1,11 +1,10 @@
-import * as React from "react";
 import { connect } from "react-redux";
 
-import Chat from "../components/Chat";
+import Chat, { IChatProps } from "../components/Chat";
 import { IState } from "../store";
-import { IAction } from "../store/reducers";
 
-const mapStateToProps = (state: IState) => ({
+const mapStateToProps = (state: IState): Partial<IChatProps> => ({
+  error: state.error,
   messages: state.messages,
 });
 

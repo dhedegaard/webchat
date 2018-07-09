@@ -1,11 +1,12 @@
 import * as React from "react";
 import Message from "./Message";
 
-interface IProps {
+export interface IChatProps {
   messages: webchat.IMessage[];
+  error: string;
 }
 
-export default class Chat extends React.Component<IProps, {}> {
+export default class Chat extends React.Component<IChatProps, {}> {
   chat!: HTMLDivElement;
 
   componentDidUpdate() {
@@ -13,13 +14,14 @@ export default class Chat extends React.Component<IProps, {}> {
   }
 
   render() {
+    const props = this.props;
     return (
       <div
         ref={(elem) => { this.chat = elem!; }}
         id="chat"
         className="form-control"
       >
-        {this.props.messages.map((message) => (
+        {props.messages.map((message) => (
           <Message
             key={message.id}
             id={message.id}
@@ -28,6 +30,12 @@ export default class Chat extends React.Component<IProps, {}> {
             username={message.username}
           />
         ))}
+        {props.error && props.error.length > 0 && (
+          <div className="alert alert-danger">
+            <b>Sorry!</b> Something went wrong, consider reloading:<br />
+            {props.error}
+          </div>
+        )}
       </div>
     );
   }
