@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import ChatContainer from "./ChatContainer";
+import ChatContainer from "../containers/ChatContainer";
 
 interface IAppState {
   username: string;
