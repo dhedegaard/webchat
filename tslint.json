@@ -5,6 +5,8 @@
         "tslint-react"
     ],
     "jsRules": {},
-    "rules": {},
+    "rules": {
+        "member-access": false
+    },
     "rulesDirectory": []
 }

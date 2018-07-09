@@ -8,20 +8,29 @@ interface IAppState {
 }
 
 export default class App extends React.Component<{}, IAppState> {
-  state = {
-    username: "",
-    message: "",
-  };
+  input!: HTMLInputElement;
+
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      message: "",
+      username: "",
+    };
+    this.usernameChange = this.usernameChange.bind(this);
+    this.messageChange = this.messageChange.bind(this);
+    this.messageKeyPress = this.messageKeyPress.bind(this);
+    this.sendMessage = this.sendMessage.bind(this);
+  }
 
   usernameChange(e: React.ChangeEvent<HTMLInputElement>): void {
     this.setState({
-      username: e.target.value
+      username: e.target.value,
     });
   }
 
   messageChange(e: React.ChangeEvent<HTMLInputElement>): void {
     this.setState({
-      message: e.target.value
+      message: e.target.value,
     });
   }
 
@@ -37,22 +46,20 @@ export default class App extends React.Component<{}, IAppState> {
       return;
     }
 
-    let data = new FormData();
+    const data = new FormData();
     data.append("message", this.state.message);
     data.append("username", this.state.username || "anon");
     fetch("/send", {
+      body: data,
       method: "post",
-      body: data
-    }).then(response => {
+    }).then((response) => {
       /* Success, clear the input field. */
       if (response.ok) {
         this.setState({
-          message: ""
+          message: "",
+        }, () => {
+          this.input.focus();
         });
-        let input = document.getElementById('input') as HTMLElement;
-        if (input) {
-          input.focus();
-        }
         return;
       }
       /* Handle bad request. */
@@ -61,12 +68,12 @@ export default class App extends React.Component<{}, IAppState> {
       }
       /* Otherwise, throw whatever happened. */
       throw new Error(`Error from the server: ${response.status}: ${response.statusText}`);
-    }).then(json => {
+    }).then((json) => {
       if (!json) {
         return;
       }
       throw new Error(`Message: ${json.message[0].message}`);
-    }).catch(err => {
+    }).catch((err) => {
       alert(err);
     });
   }
@@ -85,19 +92,34 @@ export default class App extends React.Component<{}, IAppState> {
         </div>
         <div className="row">
           <div className="col-4 col-sm-2">
-            <input className="form-control" value={this.state.username}
-              onChange={this.usernameChange.bind(this)} id="username"
-              name="username" type="text" placeholder="anon" />
+            <input
+              className="form-control"
+              value={this.state.username}
+              onChange={this.usernameChange}
+              id="username"
+              name="username"
+              type="text"
+              placeholder="anon"
+            />
           </div>
           <div className="col-8 col-sm-10 input-group">
-            <input ref="input" className="form-control" id="input"
+            <input
+              ref={(elem) => { this.input = elem!; }}
+              className="form-control"
+              id="input"
               value={this.state.message}
-              onChange={this.messageChange.bind(this)}
-              onKeyPress={this.messageKeyPress.bind(this)}
-              name="input" type="text" autoFocus={true} />
+              onChange={this.messageChange}
+              onKeyPress={this.messageKeyPress}
+              name="input"
+              type="text"
+              autoFocus={true}
+            />
             <span className="input-group-btn">
-              <button className="btn btn-success" type="button" onClick={this.sendMessage.bind(this)}>
-                <span className="visible-lg"><i className="glyphicon glyphicon-send"></i> Send</span>
+              <button className="btn btn-success" type="button" onClick={this.sendMessage}>
+                <span className="visible-lg">
+                  <i className="glyphicon glyphicon-send" />
+                  Send
+                </span>
               </button>
             </span>
           </div>
