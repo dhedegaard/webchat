@@ -18,8 +18,16 @@ def index(request):
     """
     Renders the main template.
     """
+    # Fetch initial data.
+    messages = Message.objects.new_messages(-1)
+    messages_dict = _convert_to_dictlist(messages)
+
     return render(request, 'index.html', {
         'GIT_HASH': settings.GIT_HASH,
+        'initial_state': {
+            'messages': messages_dict,
+            'lastid': max([message.pk for message in messages]),
+        },
     })
 
 

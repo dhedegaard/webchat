@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %}{% spaceless %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,12 +11,12 @@
   </head>
   <body>
     <div class="container">
-      <a class="float-right" href="https://github.com/dhedegaard/webchat">
-        Get the source!
-      </a>
+      <a class="float-right" href="https://github.com/dhedegaard/webchat">Get the source!</a>
       <h2>Webchat</h2>
     </div>
     <div class="container" id="container"></div>
+    <script type="text/javascript">window.initialData = {{ initial_state|safe }};</script>
     <script type="text/javascript" src="{% static 'bundle.js' %}?{{ GIT_HASH }}"></script>
   </body>
 </html>
+{% endspaceless %}

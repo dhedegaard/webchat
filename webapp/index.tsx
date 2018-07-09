@@ -10,7 +10,7 @@ ReactDOM.render(
   <Provider store={store}>
     <React.Fragment>
       <App />
-      <FetcherContainer  />
+      <FetcherContainer />
     </React.Fragment>
   </Provider>,
   document.getElementById("container"),
