@@ -13,12 +13,7 @@ module.exports = {
         filename: "bundle.js"
     },
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".jsx"],
-        alias: {
-            "react": "preact-compat",
-            "react-dom": "preact-compat",
-            "create-react-class": "preact-compat/lib/create-react-class"
-        }
+        extensions: [".ts", ".tsx", ".js", ".jsx"]
     },
     devtool: "source-map",
     module: {
