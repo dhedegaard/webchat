@@ -8,7 +8,7 @@ interface IAppState {
 }
 
 export default class App extends React.Component<{}, IAppState> {
-  input!: HTMLInputElement;
+  input: React.RefObject<HTMLInputElement>;
 
   constructor(props: {}) {
     super(props);
@@ -16,6 +16,7 @@ export default class App extends React.Component<{}, IAppState> {
       message: "",
       username: "",
     };
+    this.input = React.createRef<HTMLInputElement>();
     this.usernameChange = this.usernameChange.bind(this);
     this.messageChange = this.messageChange.bind(this);
     this.messageKeyPress = this.messageKeyPress.bind(this);
@@ -58,7 +59,9 @@ export default class App extends React.Component<{}, IAppState> {
         this.setState({
           message: "",
         }, () => {
-          this.input.focus();
+          if (this.input.current) {
+            this.input.current.focus();
+          }
         });
         return;
       }
@@ -104,7 +107,7 @@ export default class App extends React.Component<{}, IAppState> {
           </div>
           <div className="col-8 col-sm-10 input-group">
             <input
-              ref={(elem) => { this.input = elem!; }}
+              ref={this.input}
               className="form-control"
               id="input"
               value={this.state.message}

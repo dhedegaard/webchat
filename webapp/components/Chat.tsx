@@ -7,17 +7,26 @@ export interface IChatProps {
 }
 
 export default class Chat extends React.Component<IChatProps, {}> {
-  chat!: HTMLDivElement;
+  chat: React.RefObject<HTMLDivElement>;
+
+  constructor(props: IChatProps) {
+    super(props);
+    this.chat = React.createRef<HTMLDivElement>();
+  }
 
   componentDidUpdate() {
-    this.chat.scrollTop = this.chat.scrollHeight;
+    if (!this.chat.current) {
+      return;
+    }
+    const chat = this.chat.current;
+    chat.scrollTop = chat.scrollHeight;
   }
 
   render() {
     const props = this.props;
     return (
       <div
-        ref={(elem) => { this.chat = elem!; }}
+        ref={this.chat}
         id="chat"
         className="form-control"
       >
