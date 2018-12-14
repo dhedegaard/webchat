@@ -1,5 +1,5 @@
-Django==2.0.8
-requests==2.19.1
-coverage==4.5.1
+Django==2.1.4
+requests==2.21.0
+coverage==4.5.2
 mock==2.0.0
 GitPython==2.1.11
