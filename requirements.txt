@@ -1,5 +1,5 @@
 Django==2.2.1
 requests==2.21.0
 coverage==4.5.3
-mock==3.0.2
+mock==3.0.3
 GitPython==2.1.11
