@@ -1,4 +1,22 @@
-FROM django:onbuild
-MAINTAINER dennis@dhedegaard.dk
-EXPOSE 8000
-CMD python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+FROM node:10 as frontend
+WORKDIR /app
+
+COPY package.json ./
+RUN npm install
+
+COPY webapp ./webapp
+COPY tsconfig.json tslint.json webpack.config.js ./
+RUN npm start
+
+FROM python:3.6
+
+COPY . ./
+COPY --from=frontend /app/webchat/static/* webchat/static/
+RUN pip install -r requirements.txt -r requirements.prod.txt
+
+ENV PORT 8080
+EXPOSE ${PORT}
+
+CMD python manage.py collectstatic -c --noinput && \
+  python manage.py migrate && \
+  gunicorn webchat.wsgi -w 10

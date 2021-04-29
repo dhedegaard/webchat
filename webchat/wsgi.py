@@ -21,8 +21,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "webchat.settings")
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
 from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
+from django.contrib.staticfiles.handlers import StaticFilesHandler
 
-# Apply WSGI middleware here.
-# from helloworld.wsgi import HelloWorldApplication
-# application = HelloWorldApplication(application)
+# You're not really supposed to serve static files through the WSGI handler, but
+# it keeps things simple.
+application = StaticFilesHandler(get_wsgi_application())

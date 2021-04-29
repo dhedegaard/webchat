@@ -10,5 +10,6 @@ const mapStateToProps = (state: IState): Partial<IChatProps> => ({
 
 const ChatContainer = connect(
   mapStateToProps,
+  // @ts-ignore - FIXME: later
 )(Chat);
 export default ChatContainer;

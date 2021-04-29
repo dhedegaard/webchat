@@ -19,5 +19,6 @@ const mapDispatcherToProps = (dispatcher: (action: IAction) => void): Partial<IF
 const FetcherContainer = connect(
   mapStateToProps,
   mapDispatcherToProps,
+  // @ts-ignore - FIXME: later
 )(Fetcher);
 export default FetcherContainer;
