@@ -12,8 +12,8 @@ ROOT = os.path.abspath(os.path.join(
 
 MANAGERS = ADMINS
 
-ALLOWED_HOSTS = ['localhost', 'wc.dhedegaard.dk', 'webchat.dhedegaard.dk',
-                 'wc.neo2k.dk', 'webchat.neo2k.dk']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'wc.dhedegaard.dk',
+                 'webchat.dhedegaard.dk', 'wc.neo2k.dk', 'webchat.neo2k.dk']
 
 DATABASES = {
     'default': {
