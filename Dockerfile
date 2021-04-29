@@ -17,6 +17,8 @@ RUN pip install -r requirements.txt -r requirements.prod.txt
 ENV PORT 8080
 EXPOSE ${PORT}
 
+RUN python manage.py test
+
 CMD python manage.py collectstatic -c --noinput && \
   python manage.py migrate && \
   gunicorn webchat.wsgi -w 10

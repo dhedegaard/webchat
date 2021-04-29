@@ -1,7 +1,7 @@
 # Django settings for webchat project.
 import os
 
-DEBUG = True
+DEBUG = 'PRODUCTION' not in os.environ
 
 ADMINS = (
     ('Dennis Hedegaard', 'dennis@dhedegaard.dk'),
@@ -14,6 +14,8 @@ MANAGERS = ADMINS
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'wc.dhedegaard.dk',
                  'webchat.dhedegaard.dk', 'wc.neo2k.dk', 'webchat.neo2k.dk']
+if 'ALLOWED_HOSTS' in os.environ:
+    ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(',')
 
 DATABASES = {
     'default': {
@@ -25,6 +27,15 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+# If there's a DATABASE_URL environ variable, expect it to be a postgres URL.
+if 'DATABASE_URL' in os.environ:
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config(
+        default=os.environ['DATABASE_URL'],
+        conn_max_age=600,
+        ssl_require=True,
+    )
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
