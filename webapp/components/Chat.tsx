@@ -12,14 +12,23 @@ export default class Chat extends React.Component<IChatProps, {}> {
   constructor(props: IChatProps) {
     super(props);
     this.chat = React.createRef<HTMLDivElement>();
+    this.scrollToBottom = this.scrollToBottom.bind(this);
   }
 
-  componentDidUpdate() {
+  scrollToBottom() {
     if (!this.chat.current) {
       return;
     }
     const chat = this.chat.current;
     chat.scrollTop = chat.scrollHeight;
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom()
+  }
+
+  componentDidMount() {
+    this.scrollToBottom()
   }
 
   render() {
