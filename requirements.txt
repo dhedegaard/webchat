@@ -3,3 +3,4 @@ requests==2.25.1
 coverage==5.5
 mock==4.0.3
 GitPython==3.1.15
+dj_database_url==0.5.0
