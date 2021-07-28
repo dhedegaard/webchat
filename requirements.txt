@@ -2,5 +2,5 @@ Django==3.2.5
 requests==2.26.0
 coverage==5.5
 mock==4.0.3
-GitPython==3.1.19
+GitPython==3.1.20
 dj_database_url==0.5.0
