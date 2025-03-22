@@ -1,2 +1,2 @@
 psycopg2-binary==2.8.6
-gunicorn==22.0.0
+gunicorn==23.0.0
